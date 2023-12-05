@@ -1,0 +1,91 @@
+:root {
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #fff;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  align-items: flex-start;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#app {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.card {
+  margin-top: 2em;
+  padding: 2em;
+  border-radius: 2em;
+  background: linear-gradient(180deg, #ff440066, transparent) no-repeat;
+  background-blend-mode: overlay;
+}
+
+h1 {
+  font-family: 'Pacifico', script;
+  font-size: 3.2em;
+  line-height: 1.1;
+  margin-top: 0;
+  opacity:0.9;
+}
+
+svg {
+  width: 100%;
+  height: auto;
+}
+
+.skills {
+  display: flex;
+  justify-content: center;
+  margin: 4em 0;
+}
+
+.skill {
+  opacity: 0.8;
+  width: 48px;
+  margin: 0 18px;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.skill:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+body {
+  height: 100vh;
+  margin: 0;
+  background-size: 150% 150%;
+  background-image: radial-gradient(#ff4500cc, transparent),
+                    radial-gradient( #4b0082cc, transparent),
+                    radial-gradient(#00ff00cc, transparent);
+  animation: move 6s infinite linear;
+}
+
+@keyframes move {
+  0% {
+    background-position: 0% 0%, 0% 0%, 100% 100%;
+  }
+  50% {
+    background-position: 100% 100%, 150% 150%, 0% 0%;
+  }
+  100% {
+    background-position: 0% 0%, 0% 0%, 100% 100%;
+  }
+}
