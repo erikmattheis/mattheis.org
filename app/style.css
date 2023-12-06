@@ -1,3 +1,8 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+
 :root {
   font-family: 'Roboto', Arial, Helvetica, sans-serif;
   line-height: 1.5;
@@ -37,18 +42,24 @@ body {
   background-blend-mode: overlay;
 }
 
+/* typography */
+
 h1 {
   font-family: 'Pacifico', script;
   font-size: 3.2em;
   line-height: 1.1;
   margin-top: 0;
-  opacity:0.9;
+  opacity: 0.9;
 }
 
-svg {
-  width: 100%;
-  height: auto;
+.skill:hover {
+  opacity: 1;
+  cursor: pointer;
 }
+
+
+
+/* layout */
 
 .skills {
   display: flex;
@@ -68,24 +79,57 @@ svg {
   cursor: pointer;
 }
 
+/* background */
+
 body {
   height: 100vh;
   margin: 0;
-  background-size: 150% 150%;
+  background-size: 200% 200%;
   background-image: radial-gradient(#ff4500cc, transparent),
-                    radial-gradient( #4b0082cc, transparent),
+                    radial-gradient(#4b0082cc, transparent),
                     radial-gradient(#00ff00cc, transparent);
-  animation: move 6s infinite linear;
+  animation: move 20s infinite linear;
 }
 
 @keyframes move {
   0% {
     background-position: 0% 0%, 0% 0%, 100% 100%;
   }
+  20% {
+    background-position: -30% 20%, 70% -50%, 40% -70%;
+  }
+  30% {
+    background-position: 0% -20%, 60% -20%, 60% -70%;
+  }
+  40% {
+    background-position: 0% 30%, 50% -10%, 80% -50%;
+  }
   50% {
-    background-position: 100% 100%, 150% 150%, 0% 0%;
+    background-position: 100% -90%, -100% 90%, -40% 70%;
+  }
+  60% {
+    background-position: 80% -20%, -60% 20%, -60% -40%;
+  }
+  70% {
+    background-position: -70% 80%, 50% -40%, 40% -50%;
+  }
+  80% {
+    background-position: 30% 50%, 70% 0%, 60% 50%;
   }
   100% {
     background-position: 0% 0%, 0% 0%, 100% 100%;
   }
+}
+
+/* page movement */
+
+@keyframes swing {
+  0% { transform: rotate(-5deg); }
+  50% { transform: rotate(5deg); }
+  100% { transform: rotate(-5deg); }
+}
+
+.swing {
+  animation: swing 2s infinite ease-in-out;
+  transform-origin: 0% 100%;
 }
