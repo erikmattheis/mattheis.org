@@ -4,7 +4,7 @@ function randomPercentage() {
   let result;
   do {
     result = Math.random() * 3 - 1.5;
-  } while (result > -1 && result < 1);
+  } while (result > -1.3 && result < 1.3);
   return result;
 }
 
@@ -57,10 +57,36 @@ function addListeners() {
     element.addEventListener('touchend', function () {
       element.style.animationPlayState = 'running';
     });
+
+
+    element.addEventListener('mouseover', function () {
+      document.getElementById('message').style.display = 'block';
+      this.style.animationPlayState = 'running'; // Access style on individual SVG
+    });
+    element.addEventListener('touchstart', function () {
+      document.getElementById('message').style.display = 'block';
+      this.style.animationPlayState = 'running'; // Access style on individual SVG
+    });
+
+    element.addEventListener('mouseover', function () {
+      this.nextElementSibling.classList.add('hovered');
+    });
+    element.addEventListener('mouseout', function () {
+      this.nextElementSibling.classList.remove('hovered');
+    });
+
   });
 
-  const svgs = document.getElementsByClassName('svg');
-  console.log(svgs)
+  const topics = document.getElementsByClassName('topic');
+  for (let i of topics) {
+    console.log(i)
+  }
+
+  let svgs = document.getElementsByTagName('svg');
+  for (let i = 0; i < svgs.length; i++) {
+
+  }
+
   svgs.forEach(element => {
     element.addEventListener('mouseover', function () {
       document.getElementById('message').style.display = 'block';
