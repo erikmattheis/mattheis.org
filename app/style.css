@@ -42,7 +42,7 @@ a {
 .card {
   margin-top: 2em;
   padding: 2em;
-  border-radius: 2em;
+  border-radius: 0;
   background: linear-gradient(180deg, #a32b0066, transparent) no-repeat;
   background-blend-mode: overlay;
 }

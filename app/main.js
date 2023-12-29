@@ -106,7 +106,7 @@ function addListeners() {
 window.onload = function () {
 
   console.log('window.onload')
-  addListeners();
-  changeCSSAnimationRotationRandomlyAndSlightly();
+  //addListeners();
+  //changeCSSAnimationRotationRandomlyAndSlightly();
 
 }
