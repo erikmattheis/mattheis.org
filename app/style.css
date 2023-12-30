@@ -167,11 +167,11 @@ body {
 }
 
 .left {
-  transform: translateX(-40rem);
+  transform: translateX(-4rem);
 }
 
 .right {
-  transform: translateX(40rem);
+  transform: translateX(4rem);
 }
 
 .transparent {
