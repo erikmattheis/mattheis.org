@@ -9,6 +9,45 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.button a {
+  text-decoration: none;
+  position: relative;
+  padding: 10px;
+  display: inline-block;
+}
+
+.button a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 0;
+  height: 2px;
+  background: #000;
+  /* color for light theme */
+  transition: width 0.3s ease-in-out;
+}
+
+@media (prefers-color-scheme: dark) {
+  .button a::after {
+    background: #fff;
+    /* color for dark theme */
+  }
+}
+
+.button a:hover::after {
+  width: 100%;
+}
+
+
 .black {
   font-weight: 900;
 }
@@ -18,6 +57,7 @@ body {
   background-color: #000;
   min-width: 320px;
   min-height: 100vh;
+  background-image: linear-gradient(to top, #000000, transparent);
 }
 
 .modal-loader {
@@ -48,7 +88,6 @@ a {
   text-decoration: none;
 }
 
-
 .page {
   display: flex;
   flex-direction: column;
@@ -63,8 +102,6 @@ a {
   border-radius: 0;
   background: linear-gradient(180deg, #000000ff, #00000033, transparent) no-repeat;
 }
-
-/* typography */
 
 h1 {
   font-weight: 700;
@@ -91,13 +128,13 @@ h1 {
   transition: all 0.2s ease;
 }
 
-.topic::before {
+img::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   width: 6rem;
-  height: 6rem;
+  height: 4.2rem;
   background-color: #fff;
 }
 
@@ -130,15 +167,6 @@ footer {
   margin-top: 2rem;
   font-size: 1.2rem;
 }
-
-/* background */
-
-body {
-  background: #fff;
-  background-image: linear-gradient(to top, #000000, transparent);
-}
-
-/* page movement */
 
 .animated {
   transition-property: all;
