@@ -19,7 +19,7 @@ function hideLoading() {
   document.removeEventListener("mousemove", hideLoading);
   document.removeEventListener("touchstart", hideLoading);
 
-  animateContent();
+  //animateContent();
 
   setTimeout(removeLoading, 1000);
 }
@@ -44,7 +44,6 @@ function addAnimations() {
   let observer = new IntersectionObserver((entries, observer) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        console.log("intersecting");
         entry.target.classList.remove("left", "right", "blurred");
         observer.unobserve(entry.target);
       }
@@ -57,9 +56,31 @@ function addAnimations() {
 }
 
 document.onload = function () {
-  addAnimations();
+ // addAnimations();
 };
 
+window.onload = function() {
+  var topics = document.querySelectorAll('.topic');
+
+  window.addEventListener('scroll', function() {
+    topics.forEach(function(topic) {
+      var rect = topic.getBoundingClientRect();
+      var top = rect.top;
+      var bottom = rect.bottom;
+
+      if (top < window.innerHeight && bottom > 0) {
+        var visiblePart = Math.max(0, Math.min(window.innerHeight, bottom) - Math.max(0, top));
+        var visibleRatio = visiblePart * 3 / window.innerHeight;
+console.log('r', visibleRatio)
+        // Calculate the translateX value based on the visible ratio and the width of the topic
+        var translateX = (0.5 - visibleRatio) * topic.offsetWidth * 3;
+
+        topic.style.transform = 'translateX(' + translateX + 'px)';
+      }
+    });
+  });
+}
+/*
 window.onload = function () {
   loaderTimeout = setTimeout(hideLoading, 500);
 
@@ -85,7 +106,7 @@ window.onload = function () {
     });
   });
 }
-
+*/
 
 
 
