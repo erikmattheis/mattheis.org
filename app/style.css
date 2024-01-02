@@ -96,6 +96,10 @@ a {
 }
 
 .card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 320px;
   margin-top: 2rem;
   padding: 2rem;
@@ -112,7 +116,7 @@ h1 {
 }
 
 .topics {
-  display: flex;
+  display: block;
   justify-content: center;
   margin: 4rem 0;
 }

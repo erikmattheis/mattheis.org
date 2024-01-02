@@ -58,7 +58,7 @@ function addAnimations() {
 document.onload = function () {
  // addAnimations();
 };
-
+/*
 window.onload = function() {
   var topics = document.querySelectorAll('.topic');
 
@@ -71,7 +71,7 @@ window.onload = function() {
       if (top < window.innerHeight && bottom > 0) {
         var visiblePart = Math.max(0, Math.min(window.innerHeight, bottom) - Math.max(0, top));
         var visibleRatio = visiblePart * 3 / window.innerHeight;
-console.log('r', visibleRatio)
+        console.log('r', visibleRatio)
         // Calculate the translateX value based on the visible ratio and the width of the topic
         var translateX = (0.5 - visibleRatio) * topic.offsetWidth * 3;
 
@@ -80,6 +80,8 @@ console.log('r', visibleRatio)
     });
   });
 }
+*/
+
 /*
 window.onload = function () {
   loaderTimeout = setTimeout(hideLoading, 500);
