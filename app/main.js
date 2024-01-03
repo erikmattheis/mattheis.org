@@ -41,7 +41,6 @@ function animateContent() {
 }
 
 function handleClick(event, topic) {
-  // prevent default behavior
   event.preventDefault();
   console.log("handleClick: ", topic);
 }
@@ -86,16 +85,6 @@ window.addEventListener("scroll", function () {
   topics.forEach(function (topic) {
     const rect = topic.getBoundingClientRect();
 
-    const title = topic.querySelector(".copy");
-
-    let titleStyle;
-
-    if (title) {
-      titleStyle = window.getComputedStyle(title);
-    } else {
-      titleStyle = noElement;
-    }
-
     const distanceFromTop = rect.bottom - contentPadding;
     const distanceFromBottom = window.innerHeight - rect.top;
 
@@ -109,7 +98,6 @@ window.addEventListener("scroll", function () {
 
       topic.style.transform = "translateX(" + translateX + "px)";
       topic.style.opacity = distanceFromBottom / animationHeight;
-      return;
     }
   });
 
@@ -134,7 +122,6 @@ window.addEventListener("scroll", function () {
 
       copy.style.transform = "translateX(" + translateX + "px)";
       copy.style.opacity = distanceFromTop2 / animationHeight;
-      return;
     } else if (
       distanceFromBottom2 > 0 &&
       distanceFromBottom2 < animationHeight
