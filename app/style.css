@@ -37,8 +37,7 @@ ul.tabs li {
   width: 0;
   height: 2px;
   background: #000;
-  /* color for light theme */
-  transition: width 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -82,8 +81,13 @@ body {
   padding: 2rem;
 }
 
-.svg {
-  width: 40%;
+
+.image {
+  width: 100%;
+}
+
+.big.image {
+  width: 80%;
 }
 
 a {
@@ -124,15 +128,7 @@ h1 {
   margin: 4rem 0;
 }
 
-img::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 6rem;
-  height: 4.2rem;
-  background-color: #fff;
-}
+
 
 .topic {
   display: flex;
@@ -171,10 +167,6 @@ img::before {
 .graphic:active .title {
   transform: scale(1.2)
 }
-
-
-
-.copy {}
 
 .message {
   margin-top: 2em;
