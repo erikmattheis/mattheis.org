@@ -27,7 +27,6 @@ function hideLoading() {
 function animateLoader() {
   const allElements = document.getElementsByClassName("loader");
   for (let i = 0; i < allElements.length; i++) {
-
     allElements[i].classList.remove("left", "right", "blurred");
   }
 }
@@ -36,42 +35,65 @@ function animateContent() {
   console.log("animateContent");
   const allElements = document.getElementsByClassName("header");
   for (let i = 0; i < allElements.length; i++) {
-    console.log(allElements[i].classList)
+    console.log(allElements[i].classList);
     allElements[i].classList.remove("left", "right", "blurred");
   }
 }
 
+function handleClick(event, topic) {
+  // prevent default behavior
+  event.preventDefault();
+  console.log("handleClick: ", topic);
+}
+
+function attachListeners() {
+  
+  const buttonAi = document.querySelector(".button-ai");
+  const buttonJs = document.querySelector(".button-js");
+  const buttonDesign = document.querySelector(".button-design");
+
+  buttonAi.addEventListener("click", function (event) {
+    handleClick(event, "ai");
+  });
+
+  buttonJs.addEventListener("click", function (event) {
+    handleClick(event, "js");
+  });
+
+  buttonDesign.addEventListener("click", function (event) {
+    handleClick(event, "design");
+  });
+}
+
 window.onload = function () {
+  attachListeners();
   animateContent();
 };
 
-window.addEventListener('scroll', function () {
+window.addEventListener("scroll", function () {
+  const topics = document.querySelectorAll(".topic .graphic");
 
-  const topics = document.querySelectorAll('.topic .graphic');
-  
-  const noElement ={
-    getPropertyValue: function() {
+  const noElement = {
+    getPropertyValue: function () {
       return 0;
-    }
-  }
+    },
+  };
 
   const contentPadding = 16;
 
   const animationHeight = window.innerHeight * 0.2;
-  
-  topics.forEach(function (topic) {
 
+  topics.forEach(function (topic) {
     const rect = topic.getBoundingClientRect();
 
-    const title = topic.querySelector('.copy');
+    const title = topic.querySelector(".copy");
 
     let titleStyle;
-    
+
     if (title) {
-        titleStyle = window.getComputedStyle(title);
-    }
-    else {
-      titleStyle = noElement
+      titleStyle = window.getComputedStyle(title);
+    } else {
+      titleStyle = noElement;
     }
 
     const distanceFromTop = rect.bottom - contentPadding;
@@ -79,32 +101,27 @@ window.addEventListener('scroll', function () {
 
     if (distanceFromTop > 0 && distanceFromTop < animationHeight) {
       const translateX = distanceFromTop - animationHeight;
-  
-      topic.style.transform = 'translateX(' + translateX + 'px)';
-      topic.style.opacity = distanceFromTop / animationHeight;
 
-    }
-    else if (distanceFromBottom > 0 && distanceFromBottom < animationHeight) {
+      topic.style.transform = "translateX(" + translateX + "px)";
+      topic.style.opacity = distanceFromTop / animationHeight;
+    } else if (distanceFromBottom > 0 && distanceFromBottom < animationHeight) {
       const translateX = animationHeight - distanceFromBottom;
 
-      topic.style.transform = 'translateX(' + translateX + 'px)';
+      topic.style.transform = "translateX(" + translateX + "px)";
       topic.style.opacity = distanceFromBottom / animationHeight;
       return;
     }
-
   });
 
-  const copies = document.querySelectorAll('.copy');
+  const copies = document.querySelectorAll(".copy");
 
   copies.forEach(function (copy) {
-
     let copyStyle;
-    
+
     if (copy) {
-        copyStyle = window.getComputedStyle(copy);
-    }
-    else {
-      copyStyle = noElement
+      copyStyle = window.getComputedStyle(copy);
+    } else {
+      copyStyle = noElement;
     }
 
     const rect2 = copy.getBoundingClientRect();
@@ -115,21 +132,20 @@ window.addEventListener('scroll', function () {
     if (distanceFromTop2 > 0 && distanceFromTop2 < animationHeight) {
       const translateX = distanceFromTop2 - animationHeight;
 
-      copy.style.transform = 'translateX(' + translateX + 'px)';
-      copy.style.opacity = distanceFromTop2/ animationHeight;
+      copy.style.transform = "translateX(" + translateX + "px)";
+      copy.style.opacity = distanceFromTop2 / animationHeight;
       return;
-    }
-    else if (distanceFromBottom2 > 0 && distanceFromBottom2 < animationHeight) {
+    } else if (
+      distanceFromBottom2 > 0 &&
+      distanceFromBottom2 < animationHeight
+    ) {
       const translateX = animationHeight - distanceFromBottom2;
 
-      copy.style.transform = 'translateX(' + translateX + 'px)';
+      copy.style.transform = "translateX(" + translateX + "px)";
       copy.style.opacity = distanceFromBottom2 / animationHeight;
       return;
     }
-
   });
-      
-    
 });
 /*
 function randomPercentage() {
