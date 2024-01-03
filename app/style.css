@@ -9,10 +9,16 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-ul {
+ul.tabs {
   display: flex;
+  flex-direction: row;
   list-style: none;
   padding: 0;
+}
+
+ul.tabs li {
+
+  margin: 0 0.5rem;
 }
 
 .button a {
@@ -80,7 +86,6 @@ body {
 
 .svg {
   width: 40%;
-  margin-top: 5rem;
 }
 
 a {
@@ -129,7 +134,7 @@ h1 {
   align-items: center;
   justify-content: start;
   position: relative;
-  transition: all 0.2s ease;
+  transition: all 0.05s ease;
 }
 
 img::before {

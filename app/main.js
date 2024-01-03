@@ -56,59 +56,102 @@ function addAnimations() {
 }
 
 document.onload = function () {
- // addAnimations();
+  // addAnimations();
 };
-/*
-window.onload = function() {
-  var topics = document.querySelectorAll('.topic');
 
-  window.addEventListener('scroll', function() {
-    topics.forEach(function(topic) {
-      var rect = topic.getBoundingClientRect();
-      var top = rect.top;
-      var bottom = rect.bottom;
+window.addEventListener('scroll', function () {
+  const topics = document.querySelectorAll('.topic');
+  
 
-      if (top < window.innerHeight && bottom > 0) {
-        var visiblePart = Math.max(0, Math.min(window.innerHeight, bottom) - Math.max(0, top));
-        var visibleRatio = visiblePart * 3 / window.innerHeight;
-        console.log('r', visibleRatio)
-        // Calculate the translateX value based on the visible ratio and the width of the topic
-        var translateX = (0.5 - visibleRatio) * topic.offsetWidth * 3;
+    topics.forEach(function (topic) {
+      const rect = topic.getBoundingClientRect();
 
+      const title = topic.querySelector('.svg-title');
+      const titleStyle = window.getComputedStyle(title);
+
+      const visibleMarginBottom = parseInt(titleStyle.getPropertyValue('margin-bottom'), 10);
+      const visiblePaddingBottom = parseInt(titleStyle.getPropertyValue('padding-bottom'), 10);
+
+      const distanceFromTop = rect.bottom - (visiblePaddingBottom + visibleMarginBottom);
+      const distanceFromBottom = window.innerHeight - rect.top;
+
+      const animationHeight = window.innerHeight * 0.2;
+      if (distanceFromTop > 0 && distanceFromTop < animationHeight) {
+        const translateX = distanceFromTop - animationHeight;
         topic.style.transform = 'translateX(' + translateX + 'px)';
+        topic.style.opacity = distanceFromTop / animationHeight;
+        return;
+      }
+      if (distanceFromBottom > 0 && distanceFromBottom < animationHeight) {
+        const translateX = animationHeight - distanceFromBottom;
+        topic.style.transform = 'translateX(' + translateX + 'px)';
+        topic.style.opacity = distanceFromBottom / animationHeight;
+        return;
       }
     });
-  });
-}
-*/
-
+  })
 /*
-window.onload = function () {
-  loaderTimeout = setTimeout(hideLoading, 500);
+window.onload = function() {
+  const topics = document.querySelectorAll('.topic');
+  const animationHeight = window.innerHeight * 0.2;
 
-  document.addEventListener("mousemove", hideLoading);
-  document.addEventListener("touchstart", hideLoading);
+  window.addEventListener('scroll', function() {
 
-  addAnimations();
+    topics.forEach(function(topic) {
 
-  const links = document.querySelectorAll('.button a');
-  links.forEach(function(link) {
-    link.addEventListener('click', function(event) {
-      event.preventDefault();
+      const rect = topic.getBoundingClientRect();
+      var style = window.getComputedStyle(topic);
+      const visibleTop = rect.top - (topic.style.marginTop + topic.style.paddingTop || 0)
+      console.log(`${rect.top} - ${topic.style.marginTop} + ${topic.style.paddingTop}` || 0)
 
-      // Remove the active class from all links
-      links.forEach(function(link) {
-        link.classList.remove('active');
-        document.getElementById(link.textContent.toLowerCase() + '-content').style.display = 'none';
-      });
+      if (visibleTop > 0 && visibleTop < animationHeight) {
+        console.log('visibleTop:', visibleTop)
+        console.log('animationHeight:', animationHeight)
+        console.log('')
+        topic.style.transform = 'translateX(' + visibleTop + 'px)';
 
-      // Add the active class to the clicked link
-      this.classList.add('active');
-      document.getElementById(this.textContent.toLowerCase() + '-content').style.display = 'block';
+        
+        var top = style.getPropertyValue('margin-top');
+
+        return;
+        
+      }
+
+      const visibleBottom = rect.bottom - (topic.style.visibleMarginBottom + topic.style.visiblePaddingBottom  || 0)
+
+      if (visibleBottom < window.innerHeight && visibleBottom > window.innerHeight - animationHeight) {
+
+        console.log('visibleBottom:', visibleBottom)
+        console.log('animationHeight:', animationHeight)
+        console.log('')
+        
+        topic.style.transform = 'translateX(' + (animationHeight - visibleBottom) + 'px)';
+
+        return;
+        
+      }
+
+      const distanceFromBottom = window.innerHeight - visibleBottom;
+
+      console.log('distanceFromBottom', distanceFromBottom)
+
+      if (distanceFromBottom > 0 && distanceFromBottom < animationHeight) {
+
+        const translateX =  distanceFromBottom - animationHeight;
+
+        console.log(translateX)
+
+        topic.style.transform = 'translateX(' + translateX + 'px)';
+        
+        return
+
+      }
+
     });
   });
 }
 */
+
 
 
 
@@ -144,84 +187,4 @@ function changeCSSAnimationRotationRandomlyAndSlightly() {
     element.style.transformOrigin = "center -200px";
   });
 }
-
-function addListeners() {
-  const swingElements = document.querySelectorAll('.swing');
-
-  swingElements.forEach(element => {
-    element.addEventListener('mouseover', function () {
-      element.style.animationPlayState = 'paused';
-    });
-  });
-
-  swingElements.forEach(element => {
-    element.addEventListener('mouseout', function () {
-      element.style.animationPlayState = 'running';
-    });
-  });
-
-  swingElements.forEach(element => {
-    element.addEventListener('touchstart', function () {
-      element.style.animationPlayState = 'paused';
-    });
-  });
-
-  swingElements.forEach(element => {
-    element.addEventListener('touchend', function () {
-      element.style.animationPlayState = 'running';
-    });
-
-
-    element.addEventListener('mouseover', function () {
-      document.getElementById('message').style.display = 'block';
-      this.style.animationPlayState = 'running'; // Access style on individual SVG
-    });
-    element.addEventListener('touchstart', function () {
-      document.getElementById('message').style.display = 'block';
-      this.style.animationPlayState = 'running'; // Access style on individual SVG
-    });
-
-    element.addEventListener('mouseover', function () {
-      this.nextElementSibling.classList.add('hovered');
-    });
-    element.addEventListener('mouseout', function () {
-      this.nextElementSibling.classList.remove('hovered');
-    });
-
-  });
-
-  const topics = document.getElementsByClassName('topic');
-  for (let i of topics) {
-    console.log(i)
-  }
-
-  let svgs = document.getElementsByTagName('svg');
-  for (let i = 0; i < svgs.length; i++) {
-
-  }
-
-  svgs.forEach(element => {
-    element.addEventListener('mouseover', function () {
-      document.getElementById('message').style.display = 'block';
-    });
-  });
-
-  svgs.forEach(element => {
-    console.log('OGVIYTVYVGI')
-
-    element.addEventListener('touchstart', function () {
-      document.getElementById('message').style.display = 'block';
-    });
-  });
-}
-
-
-window.onload = function () {
-
-  console.log('window.onload')
-  //addListeners();
-  //changeCSSAnimationRotationRandomlyAndSlightly();
-
-}
-
 */
