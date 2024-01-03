@@ -60,36 +60,53 @@ document.onload = function () {
 };
 
 window.addEventListener('scroll', function () {
-  const topics = document.querySelectorAll('.topic');
+  const topics = document.querySelectorAll('.topic .graphic');
   
+  const noElement ={
+    getPropertyValue: function() {
+      return 0;
+    }
+  }
+  
+  topics.forEach(function (topic) {
 
-    topics.forEach(function (topic) {
-      const rect = topic.getBoundingClientRect();
+    const rect = topic.getBoundingClientRect();
 
-      const title = topic.querySelector('.svg-title');
-      const titleStyle = window.getComputedStyle(title);
+    const title = topic.querySelector('.svg-title');
 
-      const visibleMarginBottom = parseInt(titleStyle.getPropertyValue('margin-bottom'), 10);
-      const visiblePaddingBottom = parseInt(titleStyle.getPropertyValue('padding-bottom'), 10);
+    let titleStyle;
+    
+    if (title) {
+        titleStyle = window.getComputedStyle(title);
+    }
+    else {
+      titleStyle = noElement
+    }
 
-      const distanceFromTop = rect.bottom - (visiblePaddingBottom + visibleMarginBottom);
-      const distanceFromBottom = window.innerHeight - rect.top;
+    const visibleMarginBottom = parseInt(titleStyle.getPropertyValue('margin-bottom'), 10);
+    const visiblePaddingBottom = parseInt(titleStyle.getPropertyValue('padding-bottom'), 10);
 
-      const animationHeight = window.innerHeight * 0.2;
-      if (distanceFromTop > 0 && distanceFromTop < animationHeight) {
-        const translateX = distanceFromTop - animationHeight;
-        topic.style.transform = 'translateX(' + translateX + 'px)';
-        topic.style.opacity = distanceFromTop / animationHeight;
-        return;
-      }
-      if (distanceFromBottom > 0 && distanceFromBottom < animationHeight) {
-        const translateX = animationHeight - distanceFromBottom;
-        topic.style.transform = 'translateX(' + translateX + 'px)';
-        topic.style.opacity = distanceFromBottom / animationHeight;
-        return;
-      }
-    });
-  })
+    const distanceFromTop = rect.bottom - (visiblePaddingBottom + visibleMarginBottom);
+    const distanceFromBottom = window.innerHeight - rect.top;
+
+    const animationHeight = window.innerHeight * 0.2;
+    console.log(animationHeight)
+    if (distanceFromTop > 0 && distanceFromTop < animationHeight) {
+      const translateX = distanceFromTop - animationHeight;
+      console.log(translateX)
+      topic.style.transform = 'translateX(' + translateX + 'px)';
+      topic.style.opacity = distanceFromTop / animationHeight;
+      return;
+    }
+    if (distanceFromBottom > 0 && distanceFromBottom < animationHeight) {
+      const translateX = animationHeight - distanceFromBottom;
+      console.log(translateX)
+      topic.style.transform = 'translateX(' + translateX + 'px)';
+      topic.style.opacity = distanceFromBottom / animationHeight;
+      return;
+    }
+  });
+})
 /*
 window.onload = function() {
   const topics = document.querySelectorAll('.topic');

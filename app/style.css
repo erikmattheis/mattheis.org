@@ -53,7 +53,6 @@ ul.tabs li {
   width: 100%;
 }
 
-
 .black {
   font-weight: 900;
 }
@@ -126,17 +125,6 @@ h1 {
   margin: 4rem 0;
 }
 
-.topic {
-  width: 6rem;
-  margin: 8rem 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: start;
-  position: relative;
-  transition: all 0.05s ease;
-}
-
 img::before {
   content: '';
   position: absolute;
@@ -147,20 +135,54 @@ img::before {
   background-color: #fff;
 }
 
-.topic:hover,
-.topic:active {
+.topic {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 2rem 0;
+  padding: 2rem;
+  width: 320px;
+  height: 4.2rem;
+  border-radius: 0;
+  background: linear-gradient(180deg, #000000ff, #00000033, transparent) no-repeat;
+}
+
+.graphic {
+  width: 6rem;
+  margin: 3rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.graphic:hover,
+.graphic:active {
   opacity: 1;
   cursor: pointer;
 }
 
-.svg-title {
+.title {
   transition: all 0.3s ease;
   text-align: center;
 }
 
-.topic:hover .svg-title,
-.topic:active .svg-title {
+.graphic:hover .title,
+.graphic:active .title {
   transform: scale(1.2)
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 20rem;
+  background: linear-gradient(180deg, #000000ff, #00000033, transparent) no-repeat;
 }
 
 .message {
