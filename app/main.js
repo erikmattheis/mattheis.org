@@ -32,18 +32,30 @@ function animateLoader() {
 }
 
 function animateContent() {
-  console.log("animateContent");
+
   const allElements = document.getElementsByClassName("header");
   for (let i = 0; i < allElements.length; i++) {
-    console.log(allElements[i].classList);
+
     allElements[i].classList.remove("left", "right", "blurred");
   }
 }
 
-function handleClick(event, topic) {
+function handleClick(event, subjectId) {
   event.preventDefault();
-  console.log("handleClick: ", topic);
+
+  const newActiveSubject = document.getElementById(subjectId);
+  if (!newActiveSubject) {
+    return;
+  }
+
+  const currentActiveSubject = document.querySelector(".subject.subject-active");
+  if (currentActiveSubject) {
+    currentActiveSubject.classList.remove("subject-active");
+  }
+
+  newActiveSubject.classList.add("subject-active");
 }
+
 
 function attachListeners() {
   
