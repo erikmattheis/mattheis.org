@@ -35,33 +35,59 @@ function animateContent() {
 
   const allElements = document.getElementsByClassName("header");
   for (let i = 0; i < allElements.length; i++) {
-
     allElements[i].classList.remove("left", "right", "blurred");
   }
 }
-
+/*
 function handleClick(event, subjectId) {
   event.preventDefault();
 
+  const currentActiveButton = document.querySelector(".button.active");
+  currentActiveButton.classList.remove("active");
+
+  const newActiveButton = document.getElementById("button-" + subjectId);
+  newActiveButton.classList.add("active");
+
+  const currentActiveSubject = document.querySelector(".subject-active");
+  currentActiveSubject.classList.remove("subject-active");
+
   const newActiveSubject = document.getElementById(subjectId);
-  if (!newActiveSubject) {
-    return;
-  }
-
-  const currentActiveSubject = document.querySelector(".subject.subject-active");
-  if (currentActiveSubject) {
-    currentActiveSubject.classList.remove("subject-active");
-  }
-
   newActiveSubject.classList.add("subject-active");
 }
+*/
+function handleClick(event, subjectId) {
+  console.log("handleClick", subjectId);
+  event.preventDefault();
 
+  const currentActiveButton = document.querySelector(".button.active");
 
+  if (currentActiveButton) {
+    currentActiveButton.classList.remove("active");
+  }
+
+  const newActiveButton = document.getElementById("button-" + subjectId);
+
+  newActiveButton.classList.add("active");
+
+  const currentActiveSubject = document.querySelector(".subject-active");
+
+  if (currentActiveSubject) {
+    currentActiveSubject.classList.remove("subject-active");
+    currentActiveSubject.addEventListener('transitionend', function () {
+      this.style.display = 'none'; // Hide after transition
+    }); // Remove event listener after firing once
+  }
+
+  const newActiveSubject = document.getElementById(subjectId);
+
+  newActiveSubject.classList.add("subject-active");
+
+}
 function attachListeners() {
-  
-  const buttonAi = document.querySelector(".button-ai");
-  const buttonJs = document.querySelector(".button-js");
-  const buttonDesign = document.querySelector(".button-design");
+
+  const buttonAi = document.getElementById("button-ai");
+  const buttonJs = document.getElementById("button-js");
+  const buttonDesign = document.getElementById("button-design");
 
   buttonAi.addEventListener("click", function (event) {
     handleClick(event, "ai");
@@ -146,36 +172,3 @@ window.addEventListener("scroll", function () {
     }
   });
 });
-/*
-function randomPercentage() {
-  let result;
-  do {
-    result = Math.random() * 3 - 1.5;
-  } while (result > -1.3 && result < 1.3);
-  return result;
-}
-
-function changeCSSAnimationRotationRandomlyAndSlightly() {
-  const swingElements = document.querySelectorAll('.swing');
-  const stylesheet = document.styleSheets[0];
-
-  swingElements.forEach((element, index) => {
-    const animationName = 'swing' + index;
-    const rotation = randomPercentage();
-    const duration = Math.abs(rotation) * 1.5;
-
-    const keyframes = `
-      @keyframes ${animationName} {
-        0% { transform: rotate(-${rotation}deg); }
-        50% { transform: rotate(${rotation}deg); }
-        100% { transform: rotate(-${rotation}deg); }
-      }
-    `;
-
-    stylesheet.insertRule(keyframes, stylesheet.cssRules.length);
-
-    element.style.animation = `${animationName} ${duration}s infinite ease-in-out`;
-    element.style.transformOrigin = "center -200px";
-  });
-}
-*/
