@@ -59,6 +59,12 @@ function handleClick(event, subjectId) {
   console.log("handleClick", subjectId);
   event.preventDefault();
 
+  const newActiveSubject = document.getElementById(subjectId);
+
+  if (!newActiveSubject) {
+    return;
+  }
+
   const currentActiveButton = document.querySelector(".button.active");
 
   if (currentActiveButton) {
@@ -73,15 +79,16 @@ function handleClick(event, subjectId) {
 
   if (currentActiveSubject) {
     currentActiveSubject.classList.remove("subject-active");
-    currentActiveSubject.addEventListener('transitionend', function () {
-      this.style.display = 'none';
-      const newActiveSubject = document.getElementById(subjectId);
-
-      newActiveSubject.classList.add("subject-active");
-      newActiveSubject.style.display = 'block';
-    });
+    currentActiveSubject.addEventListener('transitionend', function() {
+      this.style.display = 'none'; // Hide after transition
+      newActiveSubject.style.display = 'block'; // Show new subject after old subject has hidden
+      newActiveSubject.classList.add("fade-in"); // Add fade-in class to new subject
+      setTimeout(() => {
+        newActiveSubject.classList.remove("fade-in"); // Remove fade-in class after delay
+        newActiveSubject.classList.add("subject-active"); // Add class to new subject
+      }, 1000); // Delay equal to transition duration
+    }, { once: true }); // Remove event listener after firing once
   }
-
 }
 function attachListeners() {
 
