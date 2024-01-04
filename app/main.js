@@ -74,13 +74,13 @@ function handleClick(event, subjectId) {
   if (currentActiveSubject) {
     currentActiveSubject.classList.remove("subject-active");
     currentActiveSubject.addEventListener('transitionend', function () {
-      this.style.display = 'none'; // Hide after transition
-    }); // Remove event listener after firing once
+      this.style.display = 'none';
+      const newActiveSubject = document.getElementById(subjectId);
+
+      newActiveSubject.classList.add("subject-active");
+      newActiveSubject.style.display = 'block';
+    });
   }
-
-  const newActiveSubject = document.getElementById(subjectId);
-
-  newActiveSubject.classList.add("subject-active");
 
 }
 function attachListeners() {
