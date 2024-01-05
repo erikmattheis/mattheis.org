@@ -2,8 +2,351 @@
 <html lang="en">
 
 <head>
+  <style>
+    :root {
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 400;
+      line-height: 1.5;
+      font-synthesis: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      color: rgba(255, 255, 255);
+      background-color: #000;
+      min-width: 320px;
+      min-height: 100vh;
+      background-image: linear-gradient(to top, #000000, transparent);
+    }
+
+    .modal-loader {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: absolute;
+      z-index: 31;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0);
+      transition: all 0.8s ease-in-out;
+      margin-top: 2rem;
+      padding: 2rem;
+    }
+
+    .image {
+      width: 100%;
+    }
+
+    .page {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 320px;
+      padding: 2rem;
+      border-radius: 0;
+      background: linear-gradient(180deg, #000000ff, #00000033, transparent) no-repeat;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+    }
+
+    h1.light,
+    h2.light,
+    h3.light {
+      font-weight: 200;
+    }
+
+    h1 {
+      font-weight: 700;
+      font-size: 2.2rem;
+      letter-spacing: 0.09rem;
+      line-height: 1.1;
+    }
+
+    p.header {
+      margin-top: 0;
+      margin-bottom: 4rem;
+    }
+
+    .graphic {
+      width: 6rem;
+      margin: 0 2rem 5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+      position: relative;
+      /* transition: all 0.3s ease-in-out; */
+    }
+
+    .graphic:hover,
+    .graphic:active {
+      opacity: 1;
+      cursor: pointer;
+    }
+
+    .title {
+      transition: all 0.3s ease-in-out;
+      text-align: center;
+    }
+
+    .graphic:hover .title,
+    .graphic:active .title {
+      transform: scale(1.2)
+    }
+
+    .message {
+      margin-top: 2em;
+      font-size: 1.2em;
+    }
+
+    footer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2rem;
+      font-size: 1.2rem;
+    }
+
+    footer p {
+      margin: 3rem 0;
+    }
+
+    .animated {
+      transition-property: all;
+      transition-timing-function: ease-in-out;
+    }
+
+    .delayed02 {
+      transition-delay: 0.2s;
+    }
+
+    .dur02 {
+      transition-duration: 0.2s;
+    }
+
+    .dur04 {
+      transition-duration: 0.4s;
+    }
+
+    .dur06 {
+      transition-duration: 0.6s;
+    }
+
+    .dur08 {
+      transition-duration: 0.8s;
+    }
+
+    .blurred {
+      filter: blur(60px);
+      opacity: 0.8;
+    }
+
+    .big {
+      transform: scaleX(1.7) scaleY(1.7);
+    }
+
+    .left {
+      transform: translateX(-4rem);
+    }
+
+    .right {
+      transform: translateX(4rem);
+    }
+
+    .transparent {
+      opacity: 0;
+    }
+
+    /* tabs */
+
+    ul.tabs {
+      display: flex;
+      flex-direction: row;
+      list-style: none;
+      padding: 0;
+    }
+
+    ul.tabs li {
+      margin: 0 0.5rem;
+    }
+
+    .button a {
+      text-decoration: none;
+      position: relative;
+      padding: 10px;
+      display: inline-block;
+    }
+
+    .button a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      margin: auto;
+      width: 0;
+      height: 2px;
+      background: #fff;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .active.button a::after,
+    .button a:hover::after {
+      width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .subject-wrapper {
+      position: relative;
+      width: 320px;
+      margin: 0 1rem;
+    }
+
+    .subject {
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transition: opacity 0.9s ease-in-out;
+    }
+
+    .z1 {
+      z-index: 1;
+    }
+
+    .z2 {
+      z-index: 2;
+    }
+
+    .z3 {
+      z-index: 3;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .visible {
+      display: block;
+    }
+
+    .subject.subject-active {
+      opacity: 1;
+    }
+
+    .fade-in {
+      opacity: 0;
+    }
+
+    .topic {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      margin: 2rem 0;
+      padding: 2rem;
+      width: 320px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .modal-loader {
+        transition: none;
+      }
+
+      .graphic {
+        transition: none;
+      }
+
+      .title {
+        transition: none;
+      }
+
+      .button a::after {
+        transition: none;
+      }
+
+      .topic {
+        transition: none;
+      }
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        color: rgba(0, 0, 0);
+        background-color: #fff;
+      }
+
+      body {
+        color: rgba(0, 0, 0);
+        background-color: #fff;
+        background-image: linear-gradient(to top, #ffffff, transparent);
+      }
+
+      .modal-loader {
+        background-color: rgba(255, 255, 255);
+      }
+
+      .card {
+        background: linear-gradient(180deg, #ffffff, #ffffff33, transparent) no-repeat;
+      }
+
+      .button a::after {
+        background: #fff;
+      }
+
+      .button.active a::after,
+      .button a:hover::after {
+        background: #000;
+      }
+
+      svg,
+      path {
+        fill: #000;
+      }
+    }
+
+    .tab-content.visible {
+      opacity: 1;
+    }
+
+    .tab {
+      cursor: pointer;
+      padding: 10px;
+      background-color: #ddd;
+      display: inline-block;
+      margin: 5px;
+      border-radius: 5px;
+    }
+  </style>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -18,14 +361,12 @@
   <link rel="stylesheet" href="/fonts.css" />
 
   <title>Erik Mattheis</title>
-
 </head>
 
 <body>
-
   <div class="page">
     <div class="card">
-      <h1 class="header black animated dur08 blurred">ERIK MATTHEIS</h1>
+      <h1 class="header animated dur08 blurred">ERIK MATTHEIS</h1>
       <p class="header animated dur04 blurred left">
         <em>Full stack developer</em>
       </p>
@@ -35,48 +376,64 @@
         <li id="button-js" class="button button-js"><a href>JS</a></li>
         <li id="button-ai" class="button button-ai"><a href>AI</a></li>
       </ul>
-
-      <div id="design" class="visible subject design subject-active header animated dur08 blurred">
-        <div class="topic">
-          <div class="graphic">
-            <svg class="image" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1800">
-              <g id="Layer">
-                <g>
-                  <path fill="#ffffff"
-                    d="M1541.606,1540.146l0.009-0.008c35.598-35.594,35.598-93.52,0-129.121 c-17.24-17.236-40.178-26.745-64.569-26.745c-24.378,0-47.314,9.509-64.564,26.763c-35.588,35.584-35.588,93.51,0.009,129.104 C1448.096,1575.73,1506.014,1575.73,1541.606,1540.146z M1440.885,1511.743c-9.656-9.655-14.975-22.498-14.975-36.165 c0-13.659,5.318-26.511,14.975-36.167c9.665-9.655,22.512-14.979,36.175-14.979c13.659,0,26.497,5.323,36.161,14.979 c19.938,19.945,19.938,52.387-0.008,72.332C1493.271,1531.689,1460.831,1531.681,1440.885,1511.743z" />
-                  <path fill="#ffffff"
-                    d="M1700.934,402.736c0.021-0.026,0.047-0.043,0.068-0.065c0.044-0.043,0.083-0.091,0.127-0.134l5.504-5.505 l-0.138-0.139c81.836-87.814,80.038-225.814-5.507-311.356c-42.353-42.357-98.664-65.685-158.565-65.685 c-57.228,0-111.154,21.339-152.792,60.18l-0.134-0.134l-5.511,5.507c-0.043,0.046-0.09,0.085-0.134,0.131 c-0.021,0.021-0.039,0.045-0.061,0.069L66.371,1403.02l0.513,0.513c-7.364,4.749-12.699,12.548-13.98,21.907L9.578,1741.903 c-1.319,9.647,1.95,19.347,8.831,26.232c5.875,5.87,13.807,9.108,22.004,9.108c1.402,0,2.813-0.095,4.224-0.286l316.451-43.338 c9.365-1.276,17.163-6.617,21.912-13.98l0.512,0.513L1700.934,402.736z M1542.423,82.094c43.272,0,83.954,16.852,114.551,47.452 c55.643,55.638,62.276,142.02,19.897,204.983L1451.973,109.64C1478.482,91.724,1509.717,82.094,1542.423,82.094z  M1389.497,167.919l229.113,229.112L383.512,1632.129l-86.195-86.19l991.423-991.409l-59.351-59.342l-991.41,991.418 l-83.585-83.586L1389.497,167.919z M76.804,1709.731l35.68-260.604l224.915,224.916L76.804,1709.731z" />
-                  <path fill="#ffffff"
-                    d="M506.941,804.479l56.789-56.789l-454.446-454.45l185.432-185.437l87.924,87.932l-63.792,63.783 l50.362,50.359l63.792-63.779l51.262,51.258l-63.792,63.788l50.363,50.354l63.797-63.779l51.257,51.267l-94.375,94.353 l50.376,50.363l94.362-94.362l62.502,62.498l-63.792,63.801l50.363,50.354l63.792-63.792l0.043,0.047l56.789-56.789 L323.106,22.622c-15.682-15.686-41.102-15.686-56.784,0L24.102,264.845c-15.687,15.683-15.687,41.107,0,56.789L506.941,804.479z" />
-                  <path fill="#ffffff"
-                    d="M1778.944,1478.287c-0.726-0.729-1.478-1.424-2.241-2.085l-505.282-505.273l-151.159,151.159l50.259,50.26 l94.371-94.37l428.79,428.782l-185.441,185.432l-479.045-479.041l-56.789,56.798l507.437,507.427 c15.682,15.69,41.102,15.69,56.788,0l242.234-242.213c0.021-0.034,0.048-0.052,0.079-0.086 C1794.63,1519.402,1794.63,1493.969,1778.944,1478.287z" />
+      <div class="subject-wrapper">
+        <div id="design" class="z1 subject design subject-active header animated dur08 blurred">
+          <div class="topic">
+            <div class="graphic">
+              <svg class="image" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 1800">
+                <g id="Layer">
+                  <g>
+                    <path fill="#ffffff"
+                      d="M1541.606,1540.146l0.009-0.008c35.598-35.594,35.598-93.52,0-129.121 c-17.24-17.236-40.178-26.745-64.569-26.745c-24.378,0-47.314,9.509-64.564,26.763c-35.588,35.584-35.588,93.51,0.009,129.104 C1448.096,1575.73,1506.014,1575.73,1541.606,1540.146z M1440.885,1511.743c-9.656-9.655-14.975-22.498-14.975-36.165 c0-13.659,5.318-26.511,14.975-36.167c9.665-9.655,22.512-14.979,36.175-14.979c13.659,0,26.497,5.323,36.161,14.979 c19.938,19.945,19.938,52.387-0.008,72.332C1493.271,1531.689,1460.831,1531.681,1440.885,1511.743z" />
+                    <path fill="#ffffff"
+                      d="M1700.934,402.736c0.021-0.026,0.047-0.043,0.068-0.065c0.044-0.043,0.083-0.091,0.127-0.134l5.504-5.505 l-0.138-0.139c81.836-87.814,80.038-225.814-5.507-311.356c-42.353-42.357-98.664-65.685-158.565-65.685 c-57.228,0-111.154,21.339-152.792,60.18l-0.134-0.134l-5.511,5.507c-0.043,0.046-0.09,0.085-0.134,0.131 c-0.021,0.021-0.039,0.045-0.061,0.069L66.371,1403.02l0.513,0.513c-7.364,4.749-12.699,12.548-13.98,21.907L9.578,1741.903 c-1.319,9.647,1.95,19.347,8.831,26.232c5.875,5.87,13.807,9.108,22.004,9.108c1.402,0,2.813-0.095,4.224-0.286l316.451-43.338 c9.365-1.276,17.163-6.617,21.912-13.98l0.512,0.513L1700.934,402.736z M1542.423,82.094c43.272,0,83.954,16.852,114.551,47.452 c55.643,55.638,62.276,142.02,19.897,204.983L1451.973,109.64C1478.482,91.724,1509.717,82.094,1542.423,82.094z  M1389.497,167.919l229.113,229.112L383.512,1632.129l-86.195-86.19l991.423-991.409l-59.351-59.342l-991.41,991.418 l-83.585-83.586L1389.497,167.919z M76.804,1709.731l35.68-260.604l224.915,224.916L76.804,1709.731z" />
+                    <path fill="#ffffff"
+                      d="M506.941,804.479l56.789-56.789l-454.446-454.45l185.432-185.437l87.924,87.932l-63.792,63.783 l50.362,50.359l63.792-63.779l51.262,51.258l-63.792,63.788l50.363,50.354l63.797-63.779l51.257,51.267l-94.375,94.353 l50.376,50.363l94.362-94.362l62.502,62.498l-63.792,63.801l50.363,50.354l63.792-63.792l0.043,0.047l56.789-56.789 L323.106,22.622c-15.682-15.686-41.102-15.686-56.784,0L24.102,264.845c-15.687,15.683-15.687,41.107,0,56.789L506.941,804.479z" />
+                    <path fill="#ffffff"
+                      d="M1778.944,1478.287c-0.726-0.729-1.478-1.424-2.241-2.085l-505.282-505.273l-151.159,151.159l50.259,50.26 l94.371-94.37l428.79,428.782l-185.441,185.432l-479.045-479.041l-56.789,56.798l507.437,507.427 c15.682,15.69,41.102,15.69,56.788,0l242.234-242.213c0.021-0.034,0.048-0.052,0.079-0.086 C1794.63,1519.402,1794.63,1493.969,1778.944,1478.287z" />
+                  </g>
                 </g>
-              </g>
-            </svg>
-            <p class="title">Design</p>
+              </svg>
+              <p class="title">Design</p>
+            </div>
+
+            <div class="copy">
+
+              <p>I love a challenge that results in something beautiful and functional. I understand and speak Jamstack
+                but prefer English.</p>
+
+              <p> When I started, a web developer did everything but run the server and I think if we could run a shared
+                hosting account it was a webmaster.</p>
+
+              <p> Now, a full stack developer does everything but run the server and I am passable at DevOps so am still
+                a
+                Web Master.</p>
+
+              <p>I've filled many roles including scrum master but most enjoy being on a small team that takes
+                something from idea to production.</p>
+
+              <p>This is a portfilio of recent solo projects. Currently, in Winter 2024, I am looking to join a team or
+                service a new client.</p>
+
+            </div>
+
+            <div class="topic">
+              <div class="graphic">
+                <svg class="image" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                  xml:space="preserve" version="1.1"
+                  style="shape-rendering:geometricPrecision;text-rendering:geometricPrecision;image-rendering:optimizeQuality;"
+                  viewBox="0 0 706.1 706.1" x="0px" y="0px" fill-rule="evenodd" clip-rule="evenodd">
+                  <g>
+                    <path
+                      d="M353.05 0c69.02,0 124.97,55.95 124.97,124.97 0,60.82 -43.88,112.89 -103.67,123.15l0 89.24 138.46 100.6c19.64,-12.85 43.11,-20.32 68.32,-20.32 69.02,0 124.97,55.96 124.97,124.97 0,69.01 -55.95,124.97 -124.97,124.97 -69.01,0 -124.96,-55.96 -124.96,-124.97 0,-28.16 9.31,-54.15 25.04,-75.05l-128.16 -93.11 -128.15 93.11c15.72,20.9 25.04,46.89 25.04,75.05 0,69.01 -55.95,124.97 -124.97,124.97 -69.01,0 -124.96,-55.96 -124.96,-124.97 0,-69.01 55.95,-124.97 124.96,-124.97 25.22,0 48.69,7.47 68.32,20.32l138.47 -100.6 0 -89.24c-59.8,-10.26 -103.67,-62.33 -103.67,-123.15 0,-69.02 55.95,-124.97 124.96,-124.97z" />
+                  </g>
+                </svg>
+              </div>
+
+            </div>
+
           </div>
-
-          <div class="copy">
-
-            <p>I love a challenge that results in something beautiful and functional. I understand and speak Jamstack
-              but prefer English.</p>
-
-            <p> When I started, a web developer did everything but run the server and I think if we could run a shared
-              hosting account it was a webmaster.</p>
-
-            <p> Now, a full stack developer does everything but run the server and I am passable at DevOps so am still a
-              Web Master.</p>
-
-            <p>I've filled many roles including scrum master but most enjoy being on a small team that takes
-              something from idea to production.</p>
-
-            <p>This is a portfilio of recent solo projects. Currently, in Winter 2024, I am looking to join a team or
-              service a new client.</p>
-
-          </div>
-
-        </div>
-        <!--
+          <!--
         <div class="topic">
           <div class="graphic">
             <img class="image" src="/images/screenshots/articl.net.jpg" alt="Articl.net" />
@@ -88,152 +445,148 @@
               the JAMstack and I'm always looking for new ways to build better websites.</p>
           </div>
           -->
-      </div>
-
-      <div id="js" class="hidden subject js">
-        <div class="topic">
-          <div class="graphic">
-            <svg class="image" viewBox="2 1 28 31" version="1.1" xmlns="http://www.w3.org/2000/svg">
-              <g>
-                <title>NodeJS</title>
-                <path fill="#ffffff"
-                  d="M24.871 18.491c0-2.374-1.605-3.007-4.982-3.453-3.413-0.451-3.76-0.685-3.76-1.483 0-0.66 0.294-1.541 2.822-1.541 2.258 0 3.090 0.486 3.433 2.008 0.032 0.143 0.158 0.248 0.309 0.249h1.426c0.092-0.001 0.174-0.040 0.232-0.101l0-0c0.053-0.057 0.085-0.133 0.085-0.217 0-0.010-0-0.019-0.001-0.029l0 0.001c-0.221-2.622-1.963-3.844-5.483-3.844-3.134 0-5.004 1.322-5.004 3.54 0 2.406 1.859 3.070 4.867 3.368 3.599 0.352 3.878 0.878 3.878 1.586 0 1.228-0.986 1.752-3.302 1.752-2.908 0-3.548-0.73-3.763-2.177-0.025-0.153-0.156-0.269-0.315-0.269-0 0-0.001 0-0.001 0h-1.421c-0.001 0-0.001 0-0.002 0-0.174 0-0.315 0.141-0.315 0.315 0 0 0 0.001 0 0.001v-0c0 1.852 1.007 4.059 5.817 4.059 3.484 0.001 5.481-1.369 5.481-3.765zM15.998 30.996c-0 0-0.001 0-0.001 0-0.424 0-0.821-0.115-1.162-0.315l0.011 0.006-3.669-2.171c-0.547-0.306-0.28-0.415-0.1-0.479 0.633-0.2 1.183-0.456 1.691-0.773l-0.031 0.018c0.034-0.016 0.075-0.026 0.117-0.026 0.058 0 0.111 0.018 0.156 0.048l-0.001-0.001 2.819 1.673c0.049 0.027 0.108 0.042 0.17 0.042s0.121-0.016 0.172-0.043l-0.002 0.001 10.991-6.343c0.101-0.062 0.167-0.171 0.167-0.296 0-0 0-0.001 0-0.001v0-12.684c-0-0.128-0.068-0.239-0.17-0.302l-0.002-0.001-10.986-6.338c-0.049-0.028-0.107-0.044-0.169-0.044s-0.121 0.016-0.171 0.045l0.002-0.001-10.983 6.34c-0.104 0.062-0.172 0.174-0.174 0.301v12.684c0 0.126 0.070 0.235 0.172 0.293l0.002 0.001 3.010 1.739c1.633 0.817 2.634-0.145 2.634-1.112v-12.523c0-0 0-0 0-0 0-0.174 0.141-0.316 0.316-0.316 0.001 0 0.003 0 0.004 0h1.393c0 0 0.001 0 0.001 0 0.175 0 0.317 0.141 0.318 0.316v12.523c0.016 0.118 0.026 0.255 0.026 0.394 0 1.682-1.363 3.045-3.045 3.045-0.082 0-0.164-0.003-0.245-0.010l0.011 0.001c-0.024 0-0.053 0.001-0.082 0.001-0.906 0-1.753-0.256-2.47-0.701l0.020 0.012-2.884-1.658c-0.694-0.409-1.152-1.153-1.152-2.004 0-0 0-0 0-0v0-12.684c0-0.851 0.458-1.594 1.141-1.997l0.011-0.006 10.991-6.351c0.333-0.186 0.731-0.295 1.155-0.295s0.821 0.109 1.167 0.301l-0.012-0.006 10.989 6.351c0.695 0.409 1.154 1.152 1.155 2.003v12.684c-0.002 0.851-0.46 1.595-1.144 1.998l-0.011 0.006-10.989 6.346c-0.33 0.194-0.726 0.309-1.149 0.309-0.002 0-0.005 0-0.007 0h0z">
-                </path>
-              </g>
-            </svg>
-            <p class="title">NodeJS</p>
-          </div>
-          <div class="copy">
-            <p>Since the time of "webmasters" I've always done some solo projects start to finish. I learned Node at the
-              same time as AngularJS so was full stack before the term was around. I can do
-              devops with AWS, Heroku, Netlify and Google Cloud Services. A full stack developer who does
-              their own devops is still a webmaster.</p>
-
-            <p>I learn functional use of new tools quickly and regularly use:</p>
-
-            <ul>
-              <li>Frontend
-                <ul>
-                  <li>Vanilla</li>
-                  <li>Vue</li>
-                  <li>Vuex/Pinia</li>
-                  <li>Tailwind</li>
-                  <li>BootstrapVue</li>
-                  <li>Classless CSS libraries (PicoCSS, Simple)</li>
-                </ul>
-              </li>
-              <li>Node on backend<ul>
-                  <li>Express</li>
-                  <li>Prisma</li>
-                  <li>Redis</li>
-                  <li>GraphQL</li>
-                </ul>
-              </li>
-              <li>Data <ul>
-                  <li>NoSQL</li>
-                  <li>SQL</li>
-                  <li>Firebase</li>
-                </ul>
-              </li>
-              <ul>AI
-                <ul>
-                  <li>All OpenAI APIs</li>
-                  <li>Google Bard API</li>
-                  <li>Google Cloud Vision</li>
-                  <li>Tesseract Computer Vision</li>
-                </ul>
-              </ul>
-              <li>DevOps<ul>
-                  <li>Netlify</li>
-                  <li>AWS</li>
-                  <li>Heroku</li>
-                  <li>Google Cloud</li>
-                </ul>
-              </li>
-              <li>Serverless functions<ul>
-                  <li>They are all the same</li>
-                </ul>
-              </li>
-              <li>Testing<ul>
-                  <li>Jest</li>
-                  <li>Vue Test Utils</li>
-                </ul>
-              </li>
-              <li>Software<ul>
-                  <li>Photoshop/Illustrator</li>
-                  <li>Sketch</li>
-                  <li>VS Code</li>
-                  <li>Git</li>
-                  <li>Atlassian</li>
-                  <li>Terminal</li>
-                  <li>Postman</li>
-                  <li>Chrome Dev Tools</li>
-                  <li>Chrome Lighthouse</li>
-                  <li>Google Analytics</li>
-                  <li>Google Tag Manager</li>
-                  <li>Google Search Console</li>
-                </ul>
-              </li>
-              <li>Ecommerce<ul>
-                  <li>Shopify/Liquid</li>
-                  <li>Google Ads</li>
-                  <li>Facebook Ads</li>
-                  <li>Google Merchant Center</li>
-                  <li>Google Tag Manager</li>
-                  <li>Facebook Catalog</li>
-                  <li>On-demand printing and fulfillment APIs</li>
-                  <li>Stripe</li>
-                </ul>
-              </li>
-
-            </ul>
-            </li>
-          </div>
-        </div>
-      </div>
-
-      <div id="ai" class="hidden subject ai">
-        <div class="topic">
-          <div class="graphic">
-            <svg class="image" viewBox="0 0 24 24" version="1.1" rxmlns="http://www.w3.org/2000/svg">
-              <g>
-                <path fill="#ffffff"
-                  d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z">
-                </path>
-              </g>
-            </svg>
-            <p class="title">AI</p>
-          </div>
-          <div class="copy">
-            <p>AI wrote all the text but this. I'm pretty busy but looking for a new client or two.</p>
-          </div>
         </div>
 
-        <div class="topic">
-          <div class="graphic">
-            <a href="https://github.com/erikmattheis">
-              <svg class="image" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                <path fill="#ffffff" fill-rule="evenodd" clip-rule="evenodd"
-                  d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" />
+        <div id="js" class="z2 subject js">
+          <div class="topic">
+            <div class="graphic">
+              <svg class="image" viewBox="2 1 28 31" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                <g>
+                  <title>NodeJS</title>
+                  <path fill="#ffffff"
+                    d="M24.871 18.491c0-2.374-1.605-3.007-4.982-3.453-3.413-0.451-3.76-0.685-3.76-1.483 0-0.66 0.294-1.541 2.822-1.541 2.258 0 3.090 0.486 3.433 2.008 0.032 0.143 0.158 0.248 0.309 0.249h1.426c0.092-0.001 0.174-0.040 0.232-0.101l0-0c0.053-0.057 0.085-0.133 0.085-0.217 0-0.010-0-0.019-0.001-0.029l0 0.001c-0.221-2.622-1.963-3.844-5.483-3.844-3.134 0-5.004 1.322-5.004 3.54 0 2.406 1.859 3.070 4.867 3.368 3.599 0.352 3.878 0.878 3.878 1.586 0 1.228-0.986 1.752-3.302 1.752-2.908 0-3.548-0.73-3.763-2.177-0.025-0.153-0.156-0.269-0.315-0.269-0 0-0.001 0-0.001 0h-1.421c-0.001 0-0.001 0-0.002 0-0.174 0-0.315 0.141-0.315 0.315 0 0 0 0.001 0 0.001v-0c0 1.852 1.007 4.059 5.817 4.059 3.484 0.001 5.481-1.369 5.481-3.765zM15.998 30.996c-0 0-0.001 0-0.001 0-0.424 0-0.821-0.115-1.162-0.315l0.011 0.006-3.669-2.171c-0.547-0.306-0.28-0.415-0.1-0.479 0.633-0.2 1.183-0.456 1.691-0.773l-0.031 0.018c0.034-0.016 0.075-0.026 0.117-0.026 0.058 0 0.111 0.018 0.156 0.048l-0.001-0.001 2.819 1.673c0.049 0.027 0.108 0.042 0.17 0.042s0.121-0.016 0.172-0.043l-0.002 0.001 10.991-6.343c0.101-0.062 0.167-0.171 0.167-0.296 0-0 0-0.001 0-0.001v0-12.684c-0-0.128-0.068-0.239-0.17-0.302l-0.002-0.001-10.986-6.338c-0.049-0.028-0.107-0.044-0.169-0.044s-0.121 0.016-0.171 0.045l0.002-0.001-10.983 6.34c-0.104 0.062-0.172 0.174-0.174 0.301v12.684c0 0.126 0.070 0.235 0.172 0.293l0.002 0.001 3.010 1.739c1.633 0.817 2.634-0.145 2.634-1.112v-12.523c0-0 0-0 0-0 0-0.174 0.141-0.316 0.316-0.316 0.001 0 0.003 0 0.004 0h1.393c0 0 0.001 0 0.001 0 0.175 0 0.317 0.141 0.318 0.316v12.523c0.016 0.118 0.026 0.255 0.026 0.394 0 1.682-1.363 3.045-3.045 3.045-0.082 0-0.164-0.003-0.245-0.010l0.011 0.001c-0.024 0-0.053 0.001-0.082 0.001-0.906 0-1.753-0.256-2.47-0.701l0.020 0.012-2.884-1.658c-0.694-0.409-1.152-1.153-1.152-2.004 0-0 0-0 0-0v0-12.684c0-0.851 0.458-1.594 1.141-1.997l0.011-0.006 10.991-6.351c0.333-0.186 0.731-0.295 1.155-0.295s0.821 0.109 1.167 0.301l-0.012-0.006 10.989 6.351c0.695 0.409 1.154 1.152 1.155 2.003v12.684c-0.002 0.851-0.46 1.595-1.144 1.998l-0.011 0.006-10.989 6.346c-0.33 0.194-0.726 0.309-1.149 0.309-0.002 0-0.005 0-0.007 0h0z">
+                  </path>
+                </g>
               </svg>
-            </a>
+              <p class="title">NodeJS</p>
+            </div>
+            <div class="copy">
+              <p>Since the time of "webmasters" I've always done some solo projects start to finish. I learned Node at
+                the
+                same time as AngularJS so was full stack before the term was around. I can do
+                devops with AWS, Heroku, Netlify and Google Cloud Services. A full stack developer who does
+                their own devops is still a webmaster.</p>
+
+              <p>I learn functional use of new tools quickly and regularly use:</p>
+
+              <ul>
+                <li>Frontend
+                  <ul>
+                    <li>Vanilla</li>
+                    <li>Vue</li>
+                    <li>Vuex/Pinia</li>
+                    <li>Tailwind</li>
+                    <li>BootstrapVue</li>
+                    <li>Classless CSS libraries (PicoCSS, Simple)</li>
+                  </ul>
+                </li>
+                <li>Node on backend<ul>
+                    <li>Express</li>
+                    <li>Prisma</li>
+                    <li>Redis</li>
+                    <li>GraphQL</li>
+                  </ul>
+                </li>
+                <li>Data <ul>
+                    <li>NoSQL</li>
+                    <li>SQL</li>
+                    <li>Firebase</li>
+                  </ul>
+                </li>
+                <ul>AI
+                  <ul>
+                    <li>All OpenAI APIs</li>
+                    <li>Google Bard API</li>
+                    <li>Google Cloud Vision</li>
+                    <li>Tesseract Computer Vision</li>
+                  </ul>
+                </ul>
+                <li>DevOps<ul>
+                    <li>Netlify</li>
+                    <li>AWS</li>
+                    <li>Heroku</li>
+                    <li>Google Cloud</li>
+                  </ul>
+                </li>
+                <li>Serverless functions<ul>
+                    <li>They are all the same</li>
+                  </ul>
+                </li>
+                <li>Testing<ul>
+                    <li>Jest</li>
+                    <li>Vue Test Utils</li>
+                  </ul>
+                </li>
+                <li>Software<ul>
+                    <li>Photoshop/Illustrator</li>
+                    <li>Sketch</li>
+                    <li>VS Code</li>
+                    <li>Git</li>
+                    <li>Atlassian</li>
+                    <li>Terminal</li>
+                    <li>Postman</li>
+                    <li>Chrome Dev Tools</li>
+                    <li>Chrome Lighthouse</li>
+                    <li>Google Analytics</li>
+                    <li>Google Tag Manager</li>
+                    <li>Google Search Console</li>
+                  </ul>
+                </li>
+                <li>Ecommerce<ul>
+                    <li>Shopify/Liquid</li>
+                    <li>Google Ads</li>
+                    <li>Facebook Ads</li>
+                    <li>Google Merchant Center</li>
+                    <li>Google Tag Manager</li>
+                    <li>Facebook Catalog</li>
+                    <li>On-demand printing and fulfillment APIs</li>
+                    <li>Stripe</li>
+                  </ul>
+                </li>
+
+              </ul>
+              </li>
+            </div>
           </div>
-          <div class="copy">
-            <p>My passion for design is matched only by my love for technology. I'm a full stack developer with a
-              background in design and a passion for building things that are beautiful and functional. I'm a big
-              fan
-              of
-              the JAMstack and I'm always looking for new ways to build better websites.</p>
+        </div>
+
+        <div id="ai" class="z3 subject ai">
+          <div class="topic">
+            <div class="graphic">
+              <svg class="image" viewBox="0 0 24 24" version="1.1" rxmlns="http://www.w3.org/2000/svg">
+                <g>
+                  <path fill="#ffffff"
+                    d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z">
+                  </path>
+                </g>
+              </svg>
+              <p class="title">AI</p>
+            </div>
+            <div class="copy">
+              <p>AI wrote all the text but this. I'm pretty busy but looking for a new client or two.</p>
+            </div>
+          </div>
+
+          <div class="topic">
+            <div class="graphic">
+              <a href="https://github.com/erikmattheis">
+                <svg class="image" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                  <path fill="#ffffff" fill-rule="evenodd" clip-rule="evenodd"
+                    d="M48.854 0C21.839 0 0 22 0 49.217c0 21.756 13.993 40.172 33.405 46.69 2.427.49 3.316-1.059 3.316-2.362 0-1.141-.08-5.052-.08-9.127-13.59 2.934-16.42-5.867-16.42-5.867-2.184-5.704-5.42-7.17-5.42-7.17-4.448-3.015.324-3.015.324-3.015 4.934.326 7.523 5.052 7.523 5.052 4.367 7.496 11.404 5.378 14.235 4.074.404-3.178 1.699-5.378 3.074-6.6-10.839-1.141-22.243-5.378-22.243-24.283 0-5.378 1.94-9.778 5.014-13.2-.485-1.222-2.184-6.275.486-13.038 0 0 4.125-1.304 13.426 5.052a46.97 46.97 0 0 1 12.214-1.63c4.125 0 8.33.571 12.213 1.63 9.302-6.356 13.427-5.052 13.427-5.052 2.67 6.763.97 11.816.485 13.038 3.155 3.422 5.015 7.822 5.015 13.2 0 18.905-11.404 23.06-22.324 24.283 1.78 1.548 3.316 4.481 3.316 9.126 0 6.6-.08 11.897-.08 13.526 0 1.304.89 2.853 3.316 2.364 19.412-6.52 33.405-24.935 33.405-46.691C97.707 22 75.788 0 48.854 0z" />
+                </svg>
+              </a>
+            </div>
+            <div class="copy">
+              <p>My passion for design is matched only by my love for technology. I'm a full stack developer with a
+                background in design and a passion for building things that are beautiful and functional. I'm a big
+                fan
+                of
+                the JAMstack and I'm always looking for new ways to build better websites.</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
-    <footer class="header animated dur06 blurred">
-      <p>Let's build something great togther.</p>
-      <a href="mailto:erik@mattheis.org">erik@mattheis.org</a>
-      Saint Paul, MN
-    </footer>
   </div>
 
   <script type="module" src="/main.js">
@@ -244,8 +597,255 @@
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-ZEP8V7LPC9');
+  </script>
+
+  <script>
+
+    let loaderTimeout;
+    let transitionTimeout;
+    let controller;
+    let subjectsTransitioning = false;
+
+    const footerHtml = `<footer class="header animated dur06 blurred">
+<p>Let's build something great togther.</p>
+<a href="mailto:erik@mattheis.org">erik@mattheis.org</a>
+Saint Paul, MN
+</footer>`;
+
+    function removeLoading() {
+      const loader = document.getElementsByClassName("loader-container");
+      if (loader[0]) {
+        loader[0].remove();
+      }
+    }
+
+    function hideLoading() {
+      clearTimeout(loaderTimeout);
+
+      const loader = document.getElementsByClassName("loader-container");
+
+      if (loader[0]) {
+        loader[0].classList.add("transparent");
+      }
+
+      document.removeEventListener("mousemove", hideLoading);
+      document.removeEventListener("touchstart", hideLoading);
+
+      animateContent();
+
+      setTimeout(removeLoading, 1000);
+    }
+
+    function animateLoader() {
+      const allElements = document.getElementsByClassName("loader");
+      for (let i = 0; i < allElements.length; i++) {
+        allElements[i].classList.remove("left", "right", "blurred");
+      }
+    }
+
+    function animateContent() {
+
+      const allElements = document.getElementsByClassName("header");
+      for (let i = 0; i < allElements.length; i++) {
+        allElements[i].classList.remove("left", "right", "blurred");
+      }
+    }
+
+    function addActiveButton(subjectId) {
+
+      const button = document.getElementById(`button-${subjectId}`);
+
+      if (button) {
+        button.classList.add("active");
+      }
+
+    }
+
+    function removeActiveButton(subjectId) {
+
+      const currentActiveButton = document.querySelector(".button.active");
+
+      if (currentActiveButton) {
+        currentActiveButton.classList.remove("active");
+      }
+
+    }
+
+    function removeActiveSubject(subjectId) {
+
+      const currentActiveSubject = document.querySelector(".subject-active");
+
+      if (currentActiveSubject) {
+        currentActiveSubject.classList.remove("subject-active");
+      }
+
+    }
+
+    function attachTransitionEndListener(subject) {
+
+      if (subject) {
+        subject.addEventListener("transitionend", function (event) {
+          subjectsTransitioning = false;
+        });
+      }
+
+    }
+
+    function attachTransitionEndListeners() {
+
+      const subjects = document.querySelectorAll(".subject");
+
+      subjects.forEach(function (subject) {
+        attachTransitionEndListener(subject);
+      });
+
+    }
+
+    function addActiveSubject(subjectId) {
+
+      const newActiveSubject = document.getElementById(subjectId);
+
+      if (newActiveSubject) {
+        newActiveSubject.classList.add("subject-active");
+      }
+
+    }
+
+
+    function handleClick(event, subjectId) {
+      console.log(`handleClick ${subjectId}`)
+      event.preventDefault();
+
+      if (subjectsTransitioning) {
+        console.log(`aborted subjectsTransitioning ${subjectId}`)
+        return;
+      }
+
+      subjectsTransitioning = true;
+
+      removeActiveButton(subjectId);
+      addActiveButton(subjectId);
+      removeActiveSubject(subjectId);
+      addActiveSubject(subjectId);
+
+    }
+
+    handleClick('design');
+
+    window.addEventListener('DOMContentLoaded', adjustSubjectWrapperHeight);
+    window.addEventListener('resize', adjustSubjectWrapperHeight);
+
+    function adjustSubjectWrapperHeight() {
+      var subjectWrapper = document.querySelector('.subject-wrapper');
+      var activeSubject = document.querySelector('.subject.subject-active');
+
+      if (subjectWrapper && activeSubject) {
+        subjectWrapper.style.height = activeSubject.offsetHeight + 'px';
+      }
+    }
+
+    function attachListeners() {
+
+      const buttonAi = document.getElementById("button-ai");
+      const buttonJs = document.getElementById("button-js");
+      const buttonDesign = document.getElementById("button-design");
+
+      buttonAi.addEventListener("click", function (event) {
+        handleClick(event, "ai");
+      });
+
+      buttonJs.addEventListener("click", function (event) {
+        handleClick(event, "js");
+      });
+
+      buttonDesign.addEventListener("click", function (event) {
+        handleClick(event, "design");
+      });
+
+      attachTransitionEndListeners();
+    }
+
+    function addFooterToEverySubjectClass() {
+      const subjects = document.querySelectorAll(".subject");
+      subjects.forEach(function (subject) {
+        subject.insertAdjacentHTML("beforeend", footerHtml);
+      });
+    }
+
+    window.onload = function () {
+      addFooterToEverySubjectClass();
+      attachListeners();
+      animateContent();
+    };
+
+    window.addEventListener("scroll", function () {
+      return;
+      const topics = document.querySelectorAll(".topic");
+
+      const noElement = {
+        getPropertyValue: function () {
+          return 0;
+        },
+      };
+
+      const contentPadding = 16;
+
+      const animationHeight = window.innerHeight * 0.2;
+
+      topics.forEach(function (topic) {
+        const rect = topic.getBoundingClientRect();
+
+        const distanceFromTop = rect.bottom - contentPadding;
+        const distanceFromBottom = window.innerHeight - rect.top;
+
+        if (distanceFromTop > 0 && distanceFromTop < animationHeight) {
+          const translateX = distanceFromTop - animationHeight;
+
+          topic.style.transform = "translateX(" + translateX + "px)";
+          topic.style.opacity = distanceFromTop / animationHeight;
+        } else if (distanceFromBottom > 0 && distanceFromBottom < animationHeight) {
+          const translateX = animationHeight - distanceFromBottom;
+
+          topic.style.transform = "translateX(" + translateX + "px)";
+          topic.style.opacity = distanceFromBottom / animationHeight;
+        }
+      });
+
+      const copies = document.querySelectorAll(".copy");
+
+      copies.forEach(function (copy) {
+        let copyStyle;
+
+        if (copy) {
+          copyStyle = window.getComputedStyle(copy);
+        } else {
+          copyStyle = noElement;
+        }
+
+        const rect2 = copy.getBoundingClientRect();
+
+        const distanceFromTop2 = rect2.bottom - contentPadding;
+        const distanceFromBottom2 = window.innerHeight - rect2.top;
+
+        if (distanceFromTop2 > 0 && distanceFromTop2 < animationHeight) {
+          const translateX = distanceFromTop2 - animationHeight;
+
+          copy.style.transform = "translateX(" + translateX + "px)";
+          copy.style.opacity = distanceFromTop2 / animationHeight;
+        } else if (
+          distanceFromBottom2 > 0 &&
+          distanceFromBottom2 < animationHeight
+        ) {
+          const translateX = animationHeight - distanceFromBottom2;
+
+          copy.style.transform = "translateX(" + translateX + "px)";
+          copy.style.opacity = distanceFromBottom2 / animationHeight;
+          return;
+        }
+      });
+    });
+
   </script>
 
 </body>

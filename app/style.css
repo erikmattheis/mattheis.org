@@ -8,10 +8,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.black {
-  font-weight: 900;
-}
-
 body {
   color: rgba(255, 255, 255);
   background-color: #000;
@@ -219,14 +215,25 @@ a {
   text-decoration: none;
 }
 
+.subject-wrapper {
+  position: relative;
+  width: 320px;
+  margin: 0 1rem;
+}
+
 .subject {
   opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
   transition: opacity 0.3s ease-in-out;
 }
 
 .hidden {
   display: none;
-
 }
 
 .visible {
@@ -308,4 +315,18 @@ a {
   path {
     fill: #000;
   }
+}
+
+.tab-content.visible {
+  opacity: 1;
+  z-index: 2;
+}
+
+.tab {
+  cursor: pointer;
+  padding: 10px;
+  background-color: #ddd;
+  display: inline-block;
+  margin: 5px;
+  border-radius: 5px;
 }

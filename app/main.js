@@ -3,6 +3,12 @@ let transitionTimeout;
 let controller;
 let currentTransitionSubjectId;
 
+const footerHtml = `<footer class="header animated dur06 blurred">
+<p>Let's build something great togther.</p>
+<a href="mailto:erik@mattheis.org">erik@mattheis.org</a>
+Saint Paul, MN
+</footer>`;
+
 function removeLoading() {
   const loader = document.getElementsByClassName("loader-container");
   if (loader[0]) {
@@ -104,14 +110,23 @@ function attachListeners() {
   });
 }
 
+function addFooterToEverySubjectClass(){
+  const subjects = document.querySelectorAll(".subject");
+  subjects.forEach(function (subject) {
+    subject.insertAdjacentHTML("beforeend", footerHtml);
+  });
+}
+
 window.onload = function () {
+
+  addFooterToEverySubjectClass();
   attachListeners();
   animateContent();
 };
 
 window.addEventListener("scroll", function () {
-  return;
-  const topics = document.querySelectorAll(".topic .graphic");
+
+  const topics = document.querySelectorAll(".topic");
 
   const noElement = {
     getPropertyValue: function () {
