@@ -67,6 +67,9 @@ function handleClick(event, subjectId) {
     currentActiveSubject.classList.remove("subject-active");
 
     currentActiveSubject.addEventListener('transitionend', function(evt) {
+      if (evt.propertyName !== 'opacity') {
+        return;
+      }
 
       this.style.display = 'none';
 
