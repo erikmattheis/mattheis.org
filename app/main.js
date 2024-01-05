@@ -1,4 +1,7 @@
 let loaderTimeout;
+let transitionTimeout;
+let controller;
+let currentTransitionSubjectId;
 
 function removeLoading() {
   const loader = document.getElementsByClassName("loader-container");
@@ -38,33 +41,21 @@ function animateContent() {
     allElements[i].classList.remove("left", "right", "blurred");
   }
 }
-/*
+
 function handleClick(event, subjectId) {
+  console.log(`handleClick ${subjectId}`)
   event.preventDefault();
 
-  const currentActiveButton = document.querySelector(".button.active");
-  currentActiveButton.classList.remove("active");
-
-  const newActiveButton = document.getElementById("button-" + subjectId);
-  newActiveButton.classList.add("active");
-
-  const currentActiveSubject = document.querySelector(".subject-active");
-  currentActiveSubject.classList.remove("subject-active");
-
-  const newActiveSubject = document.getElementById(subjectId);
-  newActiveSubject.classList.add("subject-active");
-}
-*/
-function handleClick(event, subjectId) {
-  console.log("handleClick", subjectId);
-  event.preventDefault();
+  if (currentTransitionSubjectId === subjectId) {
+    console.log(`aborting ${subjectId} opacity`);
+    return;
+  }
 
   const currentActiveButton = document.querySelector(".button.active");
 
   if (currentActiveButton) {
     currentActiveButton.classList.remove("active");
   }
-
 
   const newActiveButton = document.getElementById("button-" + subjectId);
 
@@ -74,24 +65,21 @@ function handleClick(event, subjectId) {
 
   if (currentActiveSubject) {
     currentActiveSubject.classList.remove("subject-active");
-    
 
-    currentActiveSubject.addEventListener('transitionend', function() {
+    currentActiveSubject.addEventListener('transitionend', function(evt) {
+
       this.style.display = 'none';
-      const newActiveSubject = document.getElementById(subjectId);
-      newActiveSubject.classList.remove("fade-in"); // Remove fade-in class after delay
 
-      newActiveSubject.style.display = 'block'; // Show new subject after old subject has hidden
-      newActiveSubject.classList.add("fade-in"); // Add fade-in class to new subject
-      setTimeout(() => {
-              newActiveSubject.style.display = 'block'; // Show new subject after old subject has hidden
-      newActiveSubject.classList.add("fade-in"); // Add fade-in class to new subject
-        newActiveSubject.classList.add("subject-active");
-         // Add class to new subject
-      }, 200); // Delay equal to transition duration
-    }); // Remove event listener after firing once
+      const newActiveSubject = document.getElementById(subjectId);
+      newActiveSubject.style.display = 'block';
+      newActiveSubject.classList.add("subject-active");
+
+    });
   }
+
+  currentTransitionSubjectId = subjectId;
 }
+
 function attachListeners() {
 
   const buttonAi = document.getElementById("button-ai");

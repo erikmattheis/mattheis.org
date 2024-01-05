@@ -1,5 +1,5 @@
 :root {
-  font-family: 'Rubik', 'Arial', serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: 400;
   line-height: 1.5;
   font-synthesis: none;
@@ -61,6 +61,19 @@ body {
   background: linear-gradient(180deg, #000000ff, #00000033, transparent) no-repeat;
 }
 
+h1,
+h2,
+h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+
+h1.light,
+h2.light,
+h3.light {
+  font-weight: 200;
+}
+
 h1 {
   font-weight: 700;
   font-size: 2.2rem;
@@ -71,6 +84,7 @@ h1 {
 
 p.header {
   margin-top: 0;
+  margin-bottom: 4rem;
 }
 
 .graphic {
@@ -81,7 +95,7 @@ p.header {
   align-items: center;
   justify-content: start;
   position: relative;
-  transition: all 0.3s ease-in-out;
+  /* transition: all 0.3s ease-in-out; */
 }
 
 .graphic:hover,
@@ -117,6 +131,10 @@ footer {
 .animated {
   transition-property: all;
   transition-timing-function: ease-in-out;
+}
+
+.delayed02 {
+  transition-delay: 0.2s;
 }
 
 .dur02 {
@@ -176,6 +194,8 @@ ul.tabs li {
   display: inline-block;
 }
 
+
+
 .button a::after {
   content: '';
   position: absolute;
@@ -186,14 +206,7 @@ ul.tabs li {
   width: 0;
   height: 2px;
   background: #000;
-  transition: all 0.3s ease-in-out;
-}
-
-@media (prefers-color-scheme: dark) {
-  .button a::after {
-    background: #fff;
-    /* color for dark theme */
-  }
+  transition: all 0.2s ease-in-out;
 }
 
 .active.button a::after,
@@ -208,7 +221,7 @@ a {
 
 .subject {
   opacity: 0;
-  transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
 }
 
 .subject.subject-active {
@@ -217,11 +230,6 @@ a {
 
 .fade-in {
   opacity: 0;
-  transition: opacity 0.2s ease-in-out;
-}
-
-.subject-active.fade-in {
-  opacity: 1;
 }
 
 .topic {
@@ -236,8 +244,59 @@ a {
   transition: all 0.3s ease-in-out;
 }
 
-.fade {
-  transition: opacity 1s ease-out, visibility 1s ease-out;
-  opacity: 0;
-  display: none;
+@media (prefers-reduced-motion: reduce) {
+  .modal-loader {
+    transition: none;
+  }
+
+  .graphic {
+    transition: none;
+  }
+
+  .title {
+    transition: none;
+  }
+
+  .button a::after {
+    transition: none;
+  }
+
+  .topic {
+    transition: none;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: rgba(0, 0, 0);
+    background-color: #fff;
+  }
+
+  body {
+    color: rgba(0, 0, 0);
+    background-color: #fff;
+    background-image: linear-gradient(to top, #ffffff, transparent);
+  }
+
+  .modal-loader {
+    background-color: rgba(255, 255, 255);
+  }
+
+  .card {
+    background: linear-gradient(180deg, #ffffff, #ffffff33, transparent) no-repeat;
+  }
+
+  .button a::after {
+    background: #fff;
+  }
+
+  .active.button a::after,
+  .button a:hover::after {
+    background: #000;
+  }
+
+  svg,
+  path {
+    fill: #000;
+  }
 }
