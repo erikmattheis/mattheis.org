@@ -233,7 +233,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      transition: opacity 0.9s ease-in-out;
+      transition: opacity 0.2s ease-in-out;
     }
 
     .z1 {
@@ -271,7 +271,6 @@
       justify-content: center;
       position: relative;
       margin: 2rem 0;
-      padding: 2rem;
       width: 320px;
       transition: all 0.3s ease-in-out;
     }
@@ -357,7 +356,7 @@
   <meta name="msapplication-TileColor" content="#ffffff">
   <meta name="theme-color" content="#ffffff">
 
-  <link rel="stylesheet" href="/style.css" />
+  <!--<link rel="stylesheet" href="/style.css" />-->
   <link rel="stylesheet" href="/fonts.css" />
 
   <title>Erik Mattheis</title>
@@ -588,10 +587,10 @@
       </div>
     </div>
   </div>
-
+  <!--
   <script type="module" src="/main.js">
   </script>
-
+-->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZEP8V7LPC9"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -682,11 +681,14 @@ Saint Paul, MN
 
     }
 
-    function attachTransitionEndListener(subject) {
+    function attachTransitionEndListener(subjectId) {
+
+      const subject = document.getElementById(subjectId);
 
       if (subject) {
         subject.addEventListener("transitionend", function (event) {
           subjectsTransitioning = false;
+          console.log('transitionend', subjectId, event.type)
         });
       }
 
@@ -697,7 +699,8 @@ Saint Paul, MN
       const subjects = document.querySelectorAll(".subject");
 
       subjects.forEach(function (subject) {
-        attachTransitionEndListener(subject);
+        console.log('subject.attributes.id.value', subject.attributes.id.value)
+        attachTransitionEndListener(subject.attributes.id.value);
       });
 
     }
@@ -712,6 +715,9 @@ Saint Paul, MN
 
     }
 
+    const dummyEvent = {
+      preventDefault: function () { },
+    }
 
     function handleClick(event, subjectId) {
       console.log(`handleClick ${subjectId}`)
@@ -731,7 +737,7 @@ Saint Paul, MN
 
     }
 
-    handleClick('design');
+    handleClick(dummyEvent, 'design');
 
     window.addEventListener('DOMContentLoaded', adjustSubjectWrapperHeight);
     window.addEventListener('resize', adjustSubjectWrapperHeight);
