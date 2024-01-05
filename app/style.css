@@ -55,7 +55,6 @@ body {
   justify-content: center;
   align-items: center;
   width: 320px;
-  margin-top: 2rem;
   padding: 2rem;
   border-radius: 0;
   background: linear-gradient(180deg, #000000ff, #00000033, transparent) no-repeat;
@@ -79,7 +78,6 @@ h1 {
   font-size: 2.2rem;
   letter-spacing: 0.09rem;
   line-height: 1.1;
-  margin-top: 1rem 0;
 }
 
 p.header {
@@ -224,6 +222,15 @@ a {
 .subject {
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
+}
+
+.hidden {
+  display: none;
+
+}
+
+.visible {
+  display: block;
 }
 
 .subject.subject-active {

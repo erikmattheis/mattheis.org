@@ -45,12 +45,12 @@ function animateContent() {
 function handleClick(event, subjectId) {
   console.log(`handleClick ${subjectId}`)
   event.preventDefault();
-
+/*
   if (currentTransitionSubjectId === subjectId) {
     console.log(`aborting ${subjectId} opacity`);
     return;
   }
-
+*/
   const currentActiveButton = document.querySelector(".button.active");
 
   if (currentActiveButton) {
@@ -71,10 +71,12 @@ function handleClick(event, subjectId) {
         return;
       }
 
-      this.style.display = 'none';
+      currentActiveSubject.classList.remove("visible");
+      currentActiveSubject.classList.add("hidden");
 
       const newActiveSubject = document.getElementById(subjectId);
-      newActiveSubject.style.display = 'block';
+      newActiveSubject.classList.remove("hidden");
+      newActiveSubject.classList.add("visible");
       newActiveSubject.classList.add("subject-active");
 
     });
