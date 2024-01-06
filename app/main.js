@@ -101,7 +101,7 @@ function handleClick(event, subjectId) {
 
 }
 
-handleClick(dummyEvent, 'design');
+handleClick(dummyEvent, 'approach');
 
 window.addEventListener('DOMContentLoaded', adjustSubjectWrapperHeight);
 window.addEventListener('resize', adjustSubjectWrapperHeight);
@@ -117,20 +117,23 @@ function adjustSubjectWrapperHeight() {
 
 function attachListeners() {
 
-  const buttonAi = document.getElementById("button-ai");
-  const buttonJs = document.getElementById("button-js");
-  const buttonDesign = document.getElementById("button-design");
+  const buttonAi = document.getElementById("button-work");
+  const buttonJs = document.getElementById("button-tools");
+  const buttonApproach = document.getElementById("button-approach");
 
   buttonAi.addEventListener("click", function (event) {
-    handleClick(event, "ai");
+    history.pushState({}, '', '/work');
+    handleClick(event, "work");
   });
 
   buttonJs.addEventListener("click", function (event) {
-    handleClick(event, "js");
+    history.pushState({}, '', '/tools');
+    handleClick(event, "tools");
   });
 
-  buttonDesign.addEventListener("click", function (event) {
-    handleClick(event, "design");
+  buttonApproach.addEventListener("click", function (event) {
+    history.pushState({}, '', '/');
+    handleClick(event, "approach");
   });
 
   attachTransitionEndListeners();
@@ -179,6 +182,22 @@ function animateContent() {
   const allElements = document.getElementsByClassName("header");
   for (let i = 0; i < allElements.length; i++) {
     allElements[i].classList.remove("left", "right", "blurred");
+  }
+}
+
+function initRoute() {
+  switch (window.location.pathname) {
+    case '/work':
+      handleClick(dummyEvent, 'work');
+      break;
+    case '/tools':
+      handleClick(dummyEvent, 'tools');
+      break;
+    case '/':
+      handleClick(dummyEvent, 'approach');
+      break;
+    default:
+      handleClick(dummyEvent, 'not-found');
   }
 }
 
