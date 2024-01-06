@@ -3,7 +3,7 @@ let subjectsTransitioning = false;
 
 const footerHtml = `<footer class="header animated dur06 blurred">
 <p>Let's build something great togther.</p>
-<a href="mailto:erik@mattheis.org">erik@mattheis.org</a>
+<a class="mail" href="mailto:erik@mattheis.org">erik@mattheis.org</a>
 Saint Paul, MN
 </footer>`;
 

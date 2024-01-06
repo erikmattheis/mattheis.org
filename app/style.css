@@ -119,7 +119,7 @@ footer {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 2rem;
+  margin: 2rem 0;
   font-size: 1.2rem;
 }
 
@@ -339,4 +339,8 @@ a {
   display: inline-block;
   margin: 5px;
   border-radius: 5px;
+}
+
+.mail:hover {
+  text-decoration: underline;
 }
