@@ -202,6 +202,7 @@ function initRoute() {
 }
 
 window.onload = function () {
+  initRoute();
   addFooterToEverySubjectClass();
   attachListeners();
   animateContent();
