@@ -97,6 +97,10 @@ p.header {
   /* transition: all 0.2s ease-in-out; */
 }
 
+.section.graphic {
+  margin-bottom: 2rem;
+}
+
 .graphic:hover,
 .graphic:active {
   opacity: 1;
@@ -111,6 +115,15 @@ p.header {
 .graphic:hover .title,
 .graphic:active .title {
   transform: scale(1.2)
+}
+
+.text-link {
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.text-link:hover {
+  text-decoration: underline;
 }
 
 .message {
@@ -346,6 +359,13 @@ a {
   display: inline-block;
   margin: 5px;
   border-radius: 5px;
+}
+
+.mail {
+  margin-bottom: 2rem;
+  text-decoration: none;
+  color: inherit;
+  font-weight: 700;
 }
 
 .mail:hover {
