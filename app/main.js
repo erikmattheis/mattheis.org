@@ -7,7 +7,6 @@ const footerHtml = `<footer class="header animated dur06 blurred">
 Saint Paul, MN
 </footer>`;
 
-
 function addActiveButton(subjectId) {
 
   const button = document.getElementById(`button-${subjectId}`);
