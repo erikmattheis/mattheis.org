@@ -10,8 +10,8 @@
 
 
 body {
-  color: #fce7fc;
-  background-color: #300031;
+  color: #eeeeee;
+  background-color: #000000;
   min-width: 320px;
   min-height: 100%;
   background-image: linear-gradient(to bottom, #300031, transparent);
@@ -36,7 +36,6 @@ body {
   align-items: center;
   width: 320px;
   padding: 2rem;
-  border-radius: 0;
 }
 
 .dim {
@@ -126,6 +125,14 @@ footer p {
   margin: 3rem 0;
 }
 
+footer::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 1px;
+  margin-bottom: 3rem;
+}
+
 .animated {
   transition-property: all;
   transition-timing-function: ease-in-out;
@@ -201,7 +208,7 @@ ul.tabs li {
   margin: auto;
   width: 0;
   height: 2px;
-  background: #fccafc;
+  background: #eeeeee;
   transition: all 0.2s ease-in-out;
 }
 
@@ -228,6 +235,7 @@ a {
   left: 0;
   width: 100%;
   height: 100%;
+  margin-bottom: 2rem !important;
   transition: opacity 0.2s ease-in-out;
 }
 
@@ -265,15 +273,12 @@ a {
 
   body {
     color: #300031;
-    background-color: #fce7fc;
-    background-image: linear-gradient(to bottom, #fccafc, transparent);
-    min-width: 320px;
-    min-height: 100%;
-    background-attachment: fixed;
+    background-color: #eeeeee;
+    background-image: linear-gradient(to top, #fcccca, transparent);
   }
 
   .button a::after {
-    background: #fccafc;
+    background: #eeeeee;
   }
 
   .button.active a::after,
@@ -315,7 +320,6 @@ a {
   background-color: #dddddd;
   display: inline-block;
   margin: 5px;
-  border-radius: 5px;
 }
 
 .mail {
