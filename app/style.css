@@ -8,9 +8,9 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-html,
+
 body {
-  color: #ffffff;
+  color: #fce7fc;
   background-color: #300031;
   min-width: 320px;
   min-height: 100%;
@@ -201,7 +201,7 @@ ul.tabs li {
   margin: auto;
   width: 0;
   height: 2px;
-  background-color: #ffffff;
+  background: #fccafc;
   transition: all 0.2s ease-in-out;
 }
 
@@ -261,35 +261,11 @@ a {
   transition: all 0.3s ease-in-out;
 }
 
-.tab-content.visible {
-  opacity: 1;
-}
-
-.tab {
-  cursor: pointer;
-  padding: 10px;
-  display: inline-block;
-  margin: 5px;
-  border-radius: 5px;
-}
-
-.mail {
-  margin-bottom: 2rem;
-  text-decoration: none;
-  color: inherit;
-  font-weight: 700;
-}
-
-.mail:hover {
-  text-decoration: underline;
-}
-
 @media (prefers-color-scheme: light) {
 
-  html,
   body {
     color: #300031;
-    background-color: #ffffff;
+    background-color: #fce7fc;
     background-image: linear-gradient(to bottom, #fccafc, transparent);
     min-width: 320px;
     min-height: 100%;
@@ -297,12 +273,12 @@ a {
   }
 
   .button a::after {
-    background-color: #ffffff;
+    background: #fccafc;
   }
 
   .button.active a::after,
   .button a:hover::after {
-    background-color: #300031;
+    background: #300031;
   }
 
   svg,
@@ -327,4 +303,28 @@ a {
   .topic {
     transition: none;
   }
+}
+
+.tab-content.visible {
+  opacity: 1;
+}
+
+.tab {
+  cursor: pointer;
+  padding: 10px;
+  background-color: #dddddd;
+  display: inline-block;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.mail {
+  margin-bottom: 2rem;
+  text-decoration: none;
+  color: inherit;
+  font-weight: 700;
+}
+
+.mail:hover {
+  text-decoration: underline;
 }
