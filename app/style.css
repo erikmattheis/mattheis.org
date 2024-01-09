@@ -8,31 +8,14 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html,
 body {
-  color: rgba(255, 255, 255);
-  background-color: #000000;
+  color: #ffffff;
+  background-color: #300031;
   min-width: 320px;
   min-height: 100%;
   background-image: linear-gradient(to bottom, #300031, transparent);
   background-attachment: fixed;
-}
-
-.modal-loader {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  position: absolute;
-  z-index: 31;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #300031;
-  transition: all 0.8s ease-in-out;
-  margin-top: 2rem;
-  padding: 2rem;
 }
 
 .image {
@@ -54,7 +37,6 @@ body {
   width: 320px;
   padding: 2rem;
   border-radius: 0;
-  background: linear-gradient(180deg, #300031ff, #30003133, transparent) no-repeat;
 }
 
 .dim {
@@ -219,7 +201,7 @@ ul.tabs li {
   margin: auto;
   width: 0;
   height: 2px;
-  background: #fff;
+  background-color: #ffffff;
   transition: all 0.2s ease-in-out;
 }
 
@@ -264,20 +246,8 @@ a {
   opacity: 0;
 }
 
-.hidden {
-  display: none;
-}
-
-.visible {
-  display: block;
-}
-
 .subject.subject-active {
   opacity: 1;
-}
-
-.fade-in {
-  opacity: 0;
 }
 
 .topic {
@@ -291,11 +261,57 @@ a {
   transition: all 0.3s ease-in-out;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .modal-loader {
-    transition: none;
+.tab-content.visible {
+  opacity: 1;
+}
+
+.tab {
+  cursor: pointer;
+  padding: 10px;
+  display: inline-block;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.mail {
+  margin-bottom: 2rem;
+  text-decoration: none;
+  color: inherit;
+  font-weight: 700;
+}
+
+.mail:hover {
+  text-decoration: underline;
+}
+
+@media (prefers-color-scheme: light) {
+
+  html,
+  body {
+    color: #300031;
+    background-color: #ffffff;
+    background-image: linear-gradient(to bottom, #fccafc, transparent);
+    min-width: 320px;
+    min-height: 100%;
+    background-attachment: fixed;
   }
 
+  .button a::after {
+    background-color: #ffffff;
+  }
+
+  .button.active a::after,
+  .button a:hover::after {
+    background-color: #300031;
+  }
+
+  svg,
+  path {
+    fill: #300031;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
   .graphic {
     transition: none;
   }
@@ -311,63 +327,4 @@ a {
   .topic {
     transition: none;
   }
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #300031;
-    background-color: #fff;
-  }
-
-  body {
-    color: #300031;
-    background-color: #fff;
-    background-image: linear-gradient(to top, #ffffff, transparent);
-  }
-
-  .modal-loader {
-    background-color: rgba(255, 255, 255);
-  }
-
-  .card {
-    background: linear-gradient(180deg, #ffffff, #ffffff33, transparent) no-repeat;
-  }
-
-  .button a::after {
-    background: #fff;
-  }
-
-  .button.active a::after,
-  .button a:hover::after {
-    background: #300031;
-  }
-
-  svg,
-  path {
-    fill: #300031;
-  }
-}
-
-.tab-content.visible {
-  opacity: 1;
-}
-
-.tab {
-  cursor: pointer;
-  padding: 10px;
-  background-color: #ddd;
-  display: inline-block;
-  margin: 5px;
-  border-radius: 5px;
-}
-
-.mail {
-  margin-bottom: 2rem;
-  text-decoration: none;
-  color: inherit;
-  font-weight: 700;
-}
-
-.mail:hover {
-  text-decoration: underline;
 }
