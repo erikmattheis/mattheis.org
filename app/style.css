@@ -8,7 +8,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-
 body {
   color: #eeeeee;
   background-color: #000000;
@@ -82,10 +81,6 @@ p.header {
   align-items: center;
 }
 
-.small.graphic .image {
-  width: 2rem;
-}
-
 .section.graphic {
   margin-bottom: 2rem;
 }
@@ -94,6 +89,12 @@ p.header {
 .graphic:active {
   opacity: 1;
   cursor: pointer;
+}
+
+.screenshot {
+  width: 18rem;
+  height: auto;
+  margin-bottom: 1rem;
 }
 
 .title {
