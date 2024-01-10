@@ -173,3 +173,73 @@ window.onload = function () {
   attachListeners();
   animateContent();
 };
+
+
+/* scroll effects */
+
+window.addEventListener("scroll", function () {
+
+  const topics = document.querySelectorAll(".topic");
+
+  const noElement = {
+    getPropertyValue: function () {
+      return 0;
+    },
+  };
+
+  const contentPadding = 16;
+
+  const animationHeight = window.innerHeight * 0.2;
+
+  topics.forEach(function (topic) {
+    const rect = topic.getBoundingClientRect();
+
+    const distanceFromTop = rect.bottom - contentPadding;
+    const distanceFromBottom = window.innerHeight - rect.top;
+
+    if (distanceFromTop > 0 && distanceFromTop < animationHeight) {
+      const translateX = distanceFromTop - animationHeight;
+
+      topic.style.transform = "translateX(" + translateX + "px)";
+      topic.style.opacity = distanceFromTop / animationHeight;
+    } else if (distanceFromBottom > 0 && distanceFromBottom < animationHeight) {
+      const translateX = animationHeight - distanceFromBottom;
+
+      topic.style.transform = "translateX(" + translateX + "px)";
+      topic.style.opacity = distanceFromBottom / animationHeight;
+    }
+  });
+
+  const copies = document.querySelectorAll(".copy");
+
+  copies.forEach(function (copy) {
+    let copyStyle;
+
+    if (copy) {
+      copyStyle = window.getComputedStyle(copy);
+    } else {
+      copyStyle = noElement;
+    }
+
+    const rect2 = copy.getBoundingClientRect();
+
+    const distanceFromTop2 = rect2.bottom - contentPadding;
+    const distanceFromBottom2 = window.innerHeight - rect2.top;
+
+    if (distanceFromTop2 > 0 && distanceFromTop2 < animationHeight) {
+      const translateX = distanceFromTop2 - animationHeight;
+
+      copy.style.transform = "translateX(" + translateX + "px)";
+      copy.style.opacity = distanceFromTop2 / animationHeight;
+    } else if (
+      distanceFromBottom2 > 0 &&
+      distanceFromBottom2 < animationHeight
+    ) {
+      const translateX = animationHeight - distanceFromBottom2;
+
+      copy.style.transform = "translateX(" + translateX + "px)";
+      copy.style.opacity = distanceFromBottom2 / animationHeight;
+      return;
+    }
+  });
+});
