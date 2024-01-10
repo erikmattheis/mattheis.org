@@ -78,6 +78,14 @@ p.header {
   /* transition: all 0.2s ease-in-out; */
 }
 
+.small.graphic {
+  align-items: center;
+}
+
+.small.graphic .image {
+  width: 2rem;
+}
+
 .section.graphic {
   margin-bottom: 2rem;
 }
