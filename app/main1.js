@@ -1,55 +1,68 @@
 let controller;
 let subjectsTransitioning = false;
 
-/*
 const footerHtml = `<footer class="header animated dur06 blurred">
-<p class="slide">Let's build something great togther.</p>
-<a class="slide mail" href="mailto:erik@mattheis.org">erik@mattheis.org</a>
-<div class="slide">Saint Paul, MN</div>
+<p>Let's build something great togther.</p>
+<a class="mail" href="mailto:erik@mattheis.org">erik@mattheis.org</a>
+Saint Paul, MN
 </footer>`;
-*/
 
 function addActiveButton(subjectId) {
   const button = document.getElementById(`button-${subjectId}`);
-
   if (button) {
     button.classList.add("active");
+    console.log('addActiveButton added', subjectId, typeof button)
   }
+
 }
 
-function removeActiveButton(subjectId) {
+function removeActiveButton() {
 
   const currentActiveButton = document.querySelector(".button.active");
-
+  
   if (currentActiveButton) {
     currentActiveButton.classList.remove("active");
   }
 }
 
 function removeActive() {
-  const actives = document.querySelectorAll(".active");
+  const currentActive = document.querySelectorAll(".active");
 
-  if (actives.length) {
-    actives.forEach((active) => {
-      active.classList.remove("active");
-    });
-  }
+  currentActive.forEach(function (active) {
+    active.classList.remove("active");
+  });
+
+
+  console.log('removeActiveSubject', typeof currentActive)
 }
 
 function attachTransitionEndListener(subjectId) {
   const subject = document.getElementById(subjectId);
 
+
   if (subject) {
     subject.addEventListener("transitionend", function (event) {
       subjectsTransitioning = false;
+      console.log('transitionend', subjectId, event.type)
     });
   }
 
 }
 
+function attachTransitionEndListeners() {
+
+  const subjects = document.querySelectorAll(".subject");
+  console.log('attachTransitionEndListeners', subjects)
+
+  subjects.forEach(function (subject) {
+    //attachTransitionEndListener(subject.attributes.id.value);
+  });
+
+}
+
 function addActiveSubject(subjectId) {
   const newActiveSubject = document.getElementById(subjectId);
-
+  console.log('addActiveSubject', subjectId, newActiveSubject)
   if (newActiveSubject) {
     newActiveSubject.classList.add("active");
   }
@@ -63,80 +76,64 @@ const dummyEvent = {
 function disableTabButtons() {
   const tabButtons = document.querySelectorAll(".button");
   tabButtons.forEach((button) => {
+    console.log('disabling buttons', button)
     button.classList.add("disabled");
   });
-  
 
   setTimeout(() => {
     tabButtons.forEach((button) => {
+      console.log('enabling buttons', button)
       button.classList.remove("disabled");
     });
   }, 201);
 }
 
-function handleClick(event, subjectId) {
-  console.log(`handleClick ${subjectId}`)
-  event.preventDefault();
-
+function handleClick(subjectId) {
   disableTabButtons();
-
   removeActive();
   addActiveButton(subjectId);
   addActiveSubject(subjectId);
 }
 
-/*
-  button.addEventListener('click', function() {
+addActiveButton('approach');
+addActiveSubject('approach');
 
-    buttons.forEach(function(btn) { btn.classList.remove('active'); });
-    subjects.forEach(function(subject) { subject.classList.remove('active'); });
-
-    button.classList.add('active');
-
-    var subjectId = button.id.replace('button-', '');
-    var subject = document.getElementById(subjectId);
-    subject.classList.add('active');
-  });
-*/
-
-handleClick(dummyEvent, 'approach');
-/*
 window.addEventListener('DOMContentLoaded', adjustSubjectWrapperHeight);
 window.addEventListener('resize', adjustSubjectWrapperHeight);
-*/
+
 function adjustSubjectWrapperHeight() {
-  var subjectWrapper = document.querySelector('.subject-wrapper');
-  var activeSubject = document.querySelector('.subject.active');
-console.log('adjusting height', subjectWrapper, activeSubject)
+  const subjectWrapper = document.querySelector('.subject-wrapper');
+  const activeSubject = document.querySelector('.subject.active');
+
   if (subjectWrapper && activeSubject) {
     subjectWrapper.style.height = activeSubject.offsetHeight + 'px';
   }
 }
 
 function attachListeners() {
-  console.log('attaching listeners')
-  const buttonWork = document.getElementById("button-work");
-  const buttonTools = document.getElementById("button-tools");
+  const buttonAi = document.getElementById("button-work");
+  const buttonJs = document.getElementById("button-tools");
   const buttonApproach = document.getElementById("button-approach");
-console.log('attaching listeners', buttonWork, buttonTools, buttonApproach)
-  buttonWork.addEventListener("click", function (event) {
-    console.log('attatching work')
+
+  buttonAi.addEventListener("click", function (event) {
+    event.preventDefault();
     history.pushState({}, '', '/work');
-    handleClick(event, "work");
+    handleClick("work");
   });
 
-  buttonTools.addEventListener("click", function (event) {
-    console.log('attaching tools')
+  buttonJs.addEventListener("click", function (event) {
+    event.preventDefault();
     history.pushState({}, '', '/tools');
-    handleClick(event, "tools");
+    handleClick("tools");
   });
 
   buttonApproach.addEventListener("click", function (event) {
-    console.log('attaching approach')
+    event.preventDefault();
     history.pushState({}, '', '/');
-    handleClick(event, "approach");
+    handleClick("approach");
   });
 
+  attachTransitionEndListeners();
 }
 
 function addFooterToEverySubjectClass() {
@@ -177,44 +174,8 @@ function initRoute() {
 }
 
 window.onload = function () {
-  console.log('windoe')
-
   initRoute();
-  // addFooterToEverySubjectClass();
+  //addFooterToEverySubjectClass();
   attachListeners();
   animateContent();
 };
-
-window.addEventListener("scroll", function () {
-return;
-  const topics = document.querySelectorAll(".slide");
-
-  const noElement = {
-    getPropertyValue: function () {
-      return 0;
-    },
-  };
-
-  const animationHeight = window.innerHeight * 0.1;
-
-  topics.forEach(function (topic) {
-    const rect = topic.getBoundingClientRect();
-
-    const distanceFromTop = rect.bottom;
-    const distanceFromBottom = window.innerHeight - rect.top;
-
-    if (distanceFromTop > 0 && distanceFromTop < animationHeight) {
-      const translateX = distanceFromTop - animationHeight;
-      //topic.style.transform = "translateX(" + translateX + "px)";
-      topic.style.opacity = distanceFromTop / animationHeight;
-    } else if (distanceFromBottom > 0 && distanceFromBottom < animationHeight) {
-      const translateX = animationHeight - distanceFromBottom;
-      //topic.style.transform = "translateX(" + translateX + "px)";
-      topic.style.opacity = distanceFromBottom / animationHeight;
-    } else if (rect.top < window.innerHeight && rect.bottom > 0) {
-      //topic.style.transform = "translateX(0px)";
-      topic.style.opacity = 1;
-    }
-  });
-
-});

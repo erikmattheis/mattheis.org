@@ -9,13 +9,14 @@
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   color: #eeeeee;
   background-color: #000000;
   min-width: 320px;
-  min-height: 100%;
   background-image: linear-gradient(to bottom, #300031, transparent);
   background-attachment: fixed;
-  margin-bottom: 10rem;
+
 }
 
 .image {
@@ -79,17 +80,12 @@ p.header {
 }
 
 .small.graphic {
-  align-items: center;
+  width: 1.5rem;
+  margin: 0 auto;
 }
 
 .section.graphic {
   margin-bottom: 2rem;
-}
-
-.graphic:hover,
-.graphic:active {
-  opacity: 1;
-  cursor: pointer;
 }
 
 .screenshot {
@@ -99,13 +95,7 @@ p.header {
 }
 
 .title {
-  transition: all 0.3s ease-in-out;
   text-align: center;
-}
-
-.graphic:hover .title,
-.graphic:active .title {
-  transform: scale(1.2)
 }
 
 .text-link {
@@ -127,20 +117,12 @@ footer {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 2rem 0;
+  padding-bottom: 5rem;
   font-size: 1.2rem;
 }
 
 footer p {
   margin: 3rem 0;
-}
-
-footer::after {
-  content: '';
-  display: block;
-  width: 100%;
-  height: 1px;
-  margin-bottom: 3rem;
 }
 
 .animated {
@@ -237,38 +219,21 @@ a {
 }
 
 .subject-wrapper {
+  position: relative;
   width: 320px;
   margin: 0 1rem;
 }
 
 .subject {
+  display: none;
   opacity: 0;
-  position: relative;
-  top: 0;
-  left: -9999;
   width: 100%;
   height: 100%;
-  margin-bottom: 2rem !important;
-  transition: opacity 0.2s ease-in-out;
-}
-
-.z1 {
-  z-index: 1;
-}
-
-.z2 {
-  z-index: 2;
-}
-
-.z3 {
-  z-index: 3;
-}
-
-.z4 {
-  z-index: 4;
+  transition: opacity 0.9 s ease-in-out;
 }
 
 .subject.active {
+  display: block;
   opacity: 1;
   left: 0;
 }
@@ -328,13 +293,12 @@ a {
 .tab {
   cursor: pointer;
   padding: 10px;
-  background-color: #dddddd;
   display: inline-block;
   margin: 5px;
 }
 
 .mail {
-  margin-bottom: 2rem;
+  margin: 1rem 0;
   text-decoration: none;
   color: inherit;
   font-weight: 700;
