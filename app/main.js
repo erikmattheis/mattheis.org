@@ -9,32 +9,36 @@ Saint Paul, MN
 
 function addActiveButton(subjectId) {
   const button = document.getElementById(`button-${subjectId}`);
-
   if (button) {
     button.classList.add("active");
+    console.log('addActiveButton added', subjectId, typeof button)
   }
+
 }
 
-function removeActiveButton(subjectId) {
+function removeActiveButton() {
 
   const currentActiveButton = document.querySelector(".button.active");
-
+  
   if (currentActiveButton) {
     currentActiveButton.classList.remove("active");
   }
 }
 
-function removeActiveSubject(subjectId) {
-  const currentActiveSubject = document.querySelector(".subject-active");
+function removeActive() {
+  const currentActive = document.querySelectorAll(".active");
 
-  if (currentActiveSubject) {
-    currentActiveSubject.classList.remove("subject-active");
-  }
+  currentActive.forEach(function (active) {
+    active.classList.remove("active");
+  });
 
+
+  console.log('removeActiveSubject', typeof currentActive)
 }
 
 function attachTransitionEndListener(subjectId) {
   const subject = document.getElementById(subjectId);
+
 
   if (subject) {
     subject.addEventListener("transitionend", function (event) {
@@ -48,18 +52,19 @@ function attachTransitionEndListener(subjectId) {
 function attachTransitionEndListeners() {
 
   const subjects = document.querySelectorAll(".subject");
+  console.log('attachTransitionEndListeners', subjects)
 
   subjects.forEach(function (subject) {
-    attachTransitionEndListener(subject.attributes.id.value);
+    //attachTransitionEndListener(subject.attributes.id.value);
   });
 
 }
 
 function addActiveSubject(subjectId) {
   const newActiveSubject = document.getElementById(subjectId);
-
+  console.log('addActiveSubject', subjectId, newActiveSubject)
   if (newActiveSubject) {
-    newActiveSubject.classList.add("subject-active");
+    newActiveSubject.classList.add("active");
   }
 
 }
@@ -71,36 +76,34 @@ const dummyEvent = {
 function disableTabButtons() {
   const tabButtons = document.querySelectorAll(".button");
   tabButtons.forEach((button) => {
+    console.log('disabling buttons', button)
     button.classList.add("disabled");
   });
 
   setTimeout(() => {
     tabButtons.forEach((button) => {
+      console.log('enabling buttons', button)
       button.classList.remove("disabled");
     });
   }, 201);
 }
 
-function handleClick(event, subjectId) {
-  console.log(`handleClick ${subjectId}`)
-  event.preventDefault();
-
+function handleClick(subjectId) {
   disableTabButtons();
-
-  removeActiveButton(subjectId);
+  removeActive();
   addActiveButton(subjectId);
-  removeActiveSubject(subjectId);
   addActiveSubject(subjectId);
 }
 
-handleClick(dummyEvent, 'approach');
+addActiveButton('approach');
+addActiveSubject('approach');
 
 window.addEventListener('DOMContentLoaded', adjustSubjectWrapperHeight);
 window.addEventListener('resize', adjustSubjectWrapperHeight);
 
 function adjustSubjectWrapperHeight() {
-  var subjectWrapper = document.querySelector('.subject-wrapper');
-  var activeSubject = document.querySelector('.subject.subject-active');
+  const subjectWrapper = document.querySelector('.subject-wrapper');
+  const activeSubject = document.querySelector('.subject.active');
 
   if (subjectWrapper && activeSubject) {
     subjectWrapper.style.height = activeSubject.offsetHeight + 'px';
@@ -113,18 +116,21 @@ function attachListeners() {
   const buttonApproach = document.getElementById("button-approach");
 
   buttonAi.addEventListener("click", function (event) {
+    event.preventDefault();
     history.pushState({}, '', '/work');
-    handleClick(event, "work");
+    handleClick("work");
   });
 
   buttonJs.addEventListener("click", function (event) {
+    event.preventDefault();
     history.pushState({}, '', '/tools');
-    handleClick(event, "tools");
+    handleClick("tools");
   });
 
   buttonApproach.addEventListener("click", function (event) {
+    event.preventDefault();
     history.pushState({}, '', '/');
-    handleClick(event, "approach");
+    handleClick("approach");
   });
 
   attachTransitionEndListeners();

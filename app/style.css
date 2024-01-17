@@ -243,7 +243,7 @@ a {
 
 .subject {
   opacity: 0;
-  position: absolute;
+  position: relative;
   top: 0;
   left: -9999;
   width: 100%;
@@ -252,25 +252,25 @@ a {
   transition: opacity 0.2s ease-in-out;
 }
 
-/*
 .z1 {
   z-index: 1;
-  opacity: 0;
 }
 
 .z2 {
   z-index: 2;
-  opacity: 0;
 }
 
 .z3 {
   z-index: 3;
-  opacity: 0;
 }
-*/
+
+.z4 {
+  z-index: 4;
+}
+
 .subject.active {
-  position: static;
   opacity: 1;
+  left: 0;
 }
 
 .topic {

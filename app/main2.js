@@ -27,10 +27,10 @@ function removeActiveButton(subjectId) {
 }
 
 function removeActiveSubject(subjectId) {
-  const currentActiveSubject = document.querySelector(".subject-active");
+  const currentActiveSubject = document.querySelector(".active");
 
   if (currentActiveSubject) {
-    currentActiveSubject.classList.remove("subject-active");
+    currentActiveSubject.classList.remove("active");
   }
 
 }
@@ -51,7 +51,7 @@ function addActiveSubject(subjectId) {
   const newActiveSubject = document.getElementById(subjectId);
 
   if (newActiveSubject) {
-    newActiveSubject.classList.add("subject-active");
+    newActiveSubject.classList.add("active");
   }
 
 }
@@ -110,7 +110,7 @@ window.addEventListener('resize', adjustSubjectWrapperHeight);
 
 function adjustSubjectWrapperHeight() {
   var subjectWrapper = document.querySelector('.subject-wrapper');
-  var activeSubject = document.querySelector('.subject.subject-active');
+  var activeSubject = document.querySelector('.subject.active');
 
   if (subjectWrapper && activeSubject) {
     subjectWrapper.style.height = activeSubject.offsetHeight + 'px';
