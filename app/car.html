@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Card</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+
+    .card {
+      width: 300px;
+      height: 400px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    .tabs {
+      display: flex;
+      justify-content: space-around;
+      background-color: #eee;
+      padding: 8px;
+    }
+
+    .tab {
+      cursor: pointer;
+      padding: 8px;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+
+    .tab:hover {
+      background-color: #ddd;
+    }
+
+    .content {
+      padding: 16px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <div class="tabs">
+      <div id="button-project" class="button" onclick="changeTab('default')">Default</div>
+      <div id="button-features" class="button" onclick="changeTab('features')">Features</div>
+      <div id="button-tools" class="button" onclick="changeTab('technologies')">Tools</div>
+    </div>
+
+
+
+
+    <div class="content">
+      <div id="default">
+        <h2>Title</h2>
+        <h4>Subtitle</h4>
+        <img src="screenshot.jpg" alt="Screenshot" style="max-width: 100%;">
+      </div>
+      <div id="features" style="display: none;">
+        <h2>Key Features</h2>
+        <ul>
+          <li>Feature 1</li>
+          <li>Feature 2</li>
+          <!-- Add more features as needed -->
+        </ul>
+      </div>
+      <div id="technologies" style="display: none;">
+        <h2>Technologies and Tools</h2>
+        <ul>
+          <li>HTML5</li>
+          <li>CSS3</li>
+          <li>JavaScript</li>
+          <!-- Add more technologies and tools as needed -->
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function changeTab(tabId) {
+      // Hide all tabs
+      document.getElementById('default').style.display = 'none';
+      document.getElementById('features').style.display = 'none';
+      document.getElementById('technologies').style.display = 'none';
+
+      // Show the selected tab
+      document.getElementById(tabId).style.display = 'block';
+    }
+  </script>
+
+</body>
+
+</html>

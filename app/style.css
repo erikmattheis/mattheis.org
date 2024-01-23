@@ -45,14 +45,17 @@ body {
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
 }
 
 h1.light,
 h2.light,
-h3.light {
+h3.light,
+h4.light {
+
   font-weight: 200;
 }
 
@@ -247,6 +250,11 @@ a {
   margin: 2rem 0;
   width: 320px;
   transition: all 0.3s ease-in-out;
+}
+
+h4 {
+  margin-top: 0;
+  font-size: 1rem;
 }
 
 @media (prefers-color-scheme: light) {
