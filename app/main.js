@@ -1,29 +1,33 @@
 let subjectsTransitioning = false;
 
-function addActiveButton(subjectId) {
-  const button = document.getElementById(`button-${subjectId}`);
+function addActiveButton(subject) {
+  const button = document.querySelector(`.button-${subject}`);
 
   if (button) {
     button.classList.add("active");
   }
 }
 
-function removeActive() {
-  const actives = document.querySelectorAll(".active");
+function removeActive(className) {
+  const actives = document.getElementsByClassName(className);
 
-  if (actives.length) {
-    actives.forEach((active) => {
-      active.classList.remove("active");
-    });
+  if (!actives || actives.length === 0) {
+    return;
   }
+
+  Array.from(actives).forEach((active) => {
+    active.classList.remove(className);
+  });
 }
 
-function addActiveSubject(subjectId) {
-  const newActiveSubject = document.getElementById(subjectId);
+function addActiveSubject(subject, className) {
+  const newActiveSubject = document.querySelector(`.${subject}`);
 
-  if (newActiveSubject) {
-    newActiveSubject.classList.add("active");
+  if (!newActiveSubject) {
+    return;
   }
+
+  newActiveSubject.classList.add(className)
 
 }
 
@@ -31,12 +35,19 @@ const dummyEvent = {
   preventDefault: function () { },
 }
 
-function disableTabButtons() {
-  const tabButtons = document.querySelectorAll(".button");
+function disableTabButtons(className) {
+
+  const elements = document.getElementsByClassName(className);
+
+  if (!elements || elements.length === 0) {
+    return;
+  }
+
+  const tabButtons = Array.from(elements);
+
   tabButtons.forEach((button) => {
     button.classList.add("disabled");
   });
-  
 
   setTimeout(() => {
     tabButtons.forEach((button) => {
@@ -45,34 +56,37 @@ function disableTabButtons() {
   }, 201);
 }
 
-function handleClick(event, subjectId) {
+function handleClick(event, subject, className) {
+
   event.preventDefault();
 
-  disableTabButtons();
+  disableTabButtons(className);
 
-  removeActive();
-  addActiveButton(subjectId);
-  addActiveSubject(subjectId);
+  removeActive(className);
+
+  addActiveButton(subject, className);
+  
+  addActiveSubject(subject, className);
 }
 
 function attachListeners() {
-  const buttonWork = document.getElementById("button-work");
-  const buttonTools = document.getElementById("button-tools");
-  const buttonApproach = document.getElementById("button-approach");
+  const buttonWork = document.querySelector(".button-work");
+  const buttonTools = document.querySelector(".button-tools");
+  const buttonApproach = document.querySelector(".button-approach");
 
   buttonWork.addEventListener("click", function (event) {
     history.pushState({}, '', '/work');
-    handleClick(event, "work");
+    handleClick(event, "work", "active");
   });
 
   buttonTools.addEventListener("click", function (event) {
     history.pushState({}, '', '/tools');
-    handleClick(event, "tools");
+    handleClick(event, "tools", "active");
   });
 
   buttonApproach.addEventListener("click", function (event) {
     history.pushState({}, '', '/');
-    handleClick(event, "approach");
+    handleClick(event, "approach", "active");
   });
 }
 
@@ -87,13 +101,13 @@ function animateContent() {
 function initRoute() {
   switch (window.location.pathname) {
     case '/work':
-      handleClick(dummyEvent, 'work');
+      handleClick(dummyEvent, 'work', "active");
       break;
     case '/tools':
-      handleClick(dummyEvent, 'tools');
+      handleClick(dummyEvent, 'tools', "active");
       break;
     case '/':
-      handleClick(dummyEvent, 'approach');
+      handleClick(dummyEvent, 'approach', "active");
       break;
     default:
       handleClick(dummyEvent, 'not-found');

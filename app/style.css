@@ -39,6 +39,14 @@ body {
   padding: 2rem;
 }
 
+.portfolio-card {
+  background-color: #222;
+  height: 85vh;
+  overflow: scroll;
+  transition: transform 0.5s;
+  cursor: move;
+}
+
 .dim {
   opacity: 0.8;
 }
