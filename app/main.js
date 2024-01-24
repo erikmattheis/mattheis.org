@@ -88,6 +88,84 @@ function attachListeners() {
     history.pushState({}, '', '/');
     handleClick(event, "approach", "active");
   });
+
+  const buttonArticlNet = document.querySelector(".button-button-articl-net");
+  const buttonNaturallyHued = document.querySelector(".button-button-naturally-hued");
+  const buttonSlotMachine = document.querySelector(".button-button-slotmachine");
+  const buttonArticlQa = document.querySelector(".button-button-articl-qa");
+  const buttonGreatClipsAdTool = document.querySelector(".button-button-greatclips-adtool");
+  const buttonGsnCore = document.querySelector(".button-button-gsn-core");
+  const buttonGsnApiClient = document.querySelector(".button-button-gsn-api-client");
+  const buttonEjmAddSearchForm = document.querySelector(".button-button-ejm-add-search-form");
+  const buttonCryptocurrencyDashboard = document.querySelector(".button-button-cryptocurrency-dashboard");
+  const buttonMongodbS3Backup = document.querySelector(".button-button-mongodb-s3-backup");
+  const buttonOpeningRangeBot = document.querySelector(".button-button-openingrangebot");
+
+  buttonArticlNet.addEventListener("click", function (event) {
+    handleClick(event, "articl-net", "work-active");
+  }
+  
+  );
+
+  buttonNaturallyHued.addEventListener("click", function (event) {
+    handleClick(event, "naturally-hued", "work-active");
+  });
+
+  buttonSlotMachine.addEventListener("click", function (event) {
+    handleClick(event, "slotmachine", "work-active");
+  });
+
+  buttonArticlQa.addEventListener("click", function (event) {
+
+    handleClick(event, "articl-qa", "work-active");
+  }
+
+  );
+
+  buttonGreatClipsAdTool.addEventListener("click", function (event) {
+    handleClick(event, "greatclips-adtool", "work-active");
+  }
+  );
+
+  buttonGsnCore.addEventListener("click", function (event) {
+    handleClick(event, "gsn-core", "work-active");
+  } 
+
+  );
+
+
+  buttonGsnApiClient.addEventListener("click", function (event) {
+    handleClick(event, "gsn-api-client", "work-active");
+  }
+  );
+
+  buttonEjmAddSearchForm.addEventListener("click", function (event) {
+    handleClick(event, "ejm-add-search-form", "work-active");
+  }
+  );
+
+  buttonCryptocurrencyDashboard.addEventListener("click", function (event) {
+
+    handleClick(event, "cryptocurrency-dashboard", "work-active");
+  }
+
+  );
+
+  buttonMongodbS3Backup.addEventListener("click", function (event) {
+
+    handleClick(event, "mongodb-s3-backup", "work-active");
+  }
+
+  );
+
+  buttonOpeningRangeBot.addEventListener("click", function (event) {
+
+    handleClick(event, "openingrangebot", "work-active");
+  }
+
+  );
+
+  
 }
 
 
