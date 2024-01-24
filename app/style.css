@@ -1,5 +1,6 @@
 :root {
   font-family: 'Open Sans', sans-serif;
+  font-size: 125%;
   font-weight: 400;
   line-height: 1.5;
   font-synthesis: none;
@@ -13,14 +14,58 @@ body {
   flex-direction: column;
   color: #eeeeee;
   background-color: #000000;
-  min-width: 320px;
   background-image: linear-gradient(to bottom, #300031, transparent);
   background-attachment: fixed;
-
+  margin: 0;
+  padding: 0;
 }
 
-.image {
-  width: 6rem;
+body * * {
+  border: 1px solid purple;
+}
+
+body * * * {
+  border: 1px solid blue;
+}
+
+body * * * * {
+  border: 1px solid green;
+}
+
+body * * * * * {
+  border: 1px solid yellow;
+}
+
+body * * * * * * {
+  border: 1px solid orange;
+}
+
+body * * * * * * * {
+  border: 1px solid red;
+}
+
+body * * * * * * * * {
+  border: 1px solid indigo;
+}
+
+body * * * * * * * * * {
+  border: 1px solid purple;
+}
+
+body * * * * * * * * * * {
+  border: 1px solid blue;
+}
+
+body * * * * * * * * * * * {
+  border: 1px solid green;
+}
+
+body * * * * * * * * * * * * {
+  border: 1px solid yellow;
+}
+
+body * * * * * * * * * * * * * {
+  border: 1px solid orange;
 }
 
 .page {
@@ -35,16 +80,78 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 320px;
-  padding: 2rem;
+  width: 16rem;
 }
 
 .portfolio-card {
   background-color: #222;
   height: 85vh;
-  overflow: scroll;
   transition: transform 0.5s;
-  cursor: move;
+  width: 12rem;
+  padding: 2rem;
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 3.5em;
+  height: 2em;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: white;
+  border-radius: 50px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 1.4rem;
+  width: 1.4rem;
+  right: 0.3rem;
+  bottom: 0.1rem;
+  transform: translateX(150%);
+  background-color: #59d102;
+  border-radius: inherit;
+  transition: all 0.4s ease-in-out;
+}
+
+.slider:after {
+  position: absolute;
+  content: "";
+  height: 1.4rem;
+  width: 1.4rem;
+  left: 0.3rem;
+  bottom: 0.1rem;
+  background-color: #cccccc;
+  border-radius: inherit;
+  transition: all 0.4s ease-in-out;
+}
+
+.switch input:focus + .slider {
+  border: 1px soplid red;
+}
+
+.switch input:checked + .slider:before {
+  transform: translateY(0);
+}
+
+.switch input:checked + .slider::after {
+  transform: translateX(-150%);
 }
 
 .dim {
@@ -66,6 +173,13 @@ h4.light {
 
   font-weight: 200;
 }
+
+h4 {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+
 
 h1 {
   font-weight: 700;
@@ -100,7 +214,7 @@ p.header {
 }
 
 .screenshot {
-  width: 18rem;
+  width: 10rem;
   height: auto;
   margin-bottom: 1rem;
 }
@@ -128,8 +242,10 @@ footer {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 16rem;
   padding-bottom: 5rem;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
+  text-align: center;
 }
 
 footer p {
@@ -162,7 +278,7 @@ footer p {
 }
 
 .blurred {
-  filter: blur(60px);
+  filter: blur(5rem);
   opacity: 0.8;
 }
 
@@ -187,7 +303,10 @@ footer p {
 ul.tabs {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
   list-style: none;
+  width: 16rem;
   padding: 0;
 }
 
@@ -198,7 +317,7 @@ ul.tabs li {
 .button a {
   text-decoration: none;
   position: relative;
-  padding: 10px;
+  padding: 0.5rem 0.3rem;
   display: inline-block;
 }
 
@@ -210,7 +329,7 @@ ul.tabs li {
   right: 0;
   margin: auto;
   width: 0;
-  height: 2px;
+  height: 0.2rem;
   background: #eeeeee;
   transition: all 0.2s ease-in-out;
 }
@@ -231,14 +350,14 @@ a {
 
 .subject-wrapper {
   position: relative;
-  width: 320px;
+  width: 16rem;
   margin: 0 1rem;
 }
 
 .subject {
   display: none;
   opacity: 0;
-  width: 100%;
+  width: 16rem;
   height: 100%;
   transition: opacity 0.9 s ease-in-out;
 }
@@ -256,7 +375,7 @@ a {
   justify-content: center;
   position: relative;
   margin: 2rem 0;
-  width: 320px;
+  width: 16rem;
   transition: all 0.3s ease-in-out;
 }
 
@@ -308,9 +427,32 @@ h4 {
 
 .tab {
   cursor: pointer;
-  padding: 10px;
+  padding: 0.8rem;
   display: inline-block;
-  margin: 5px;
+  margin: 0.5rem;
+}
+
+.sliding.tabs {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow: scroll;
+}
+
+.horizontal.button {
+  font-size: 0.7rem;
+  text-decoration: none;
+  position: relative;
+  padding: 0.5rem 0.3rem;
+  display: inline-block;
+}
+
+.horizontal.button a {
+  display: inline-block;
+  white-space: nowrap
 }
 
 .mail {
