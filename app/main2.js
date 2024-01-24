@@ -1,6 +1,6 @@
 let subjectsTransitioning = false;
 
-function addActiveButton(subjectId, className = "active") {
+function addActiveButton(subjectId, className = 'active') {
   const button = document.getElementById(`button-${subjectId}`);
 
   if (button) {
@@ -9,7 +9,7 @@ function addActiveButton(subjectId, className = "active") {
 }
 
 function removeActive(className) {
-  const actives = document.getElementsByClassName(className)
+  const actives = document.getElementsByClassName(className);
 
   if (actives.length) {
     actives.forEach((active) => {
@@ -18,36 +18,33 @@ function removeActive(className) {
   }
 }
 
-function addActiveSubject(subjectId, className = "active") {
+function addActiveSubject(subjectId, className = 'active') {
   const newActiveSubject = document.getElementById(subjectId);
 
   if (newActiveSubject) {
     newActiveSubject.classList.add(className);
   }
-
 }
 
 const dummyEvent = {
-  preventDefault: function () { },
-}
+  preventDefault: function () {},
+};
 
-function disableTabButtons(className = "button") {
+function disableTabButtons(className = 'button') {
   const tabButtons = document.getElementsByClassName(className);
   console.log(tabButtons.length);
   tabButtons.forEach((button) => {
-    button.classList.add("disabled");
+    button.classList.add('disabled');
   });
-  
 
   setTimeout(() => {
     tabButtons.forEach((button) => {
-      button.classList.remove("disabled");
+      button.classList.remove('disabled');
     });
   }, 201);
 }
 
-function handleClick(event, subjectId, className = "active") {
-
+function handleClick(event, subjectId, className = 'active') {
   event.preventDefault();
 
   disableTabButtons();
@@ -60,46 +57,45 @@ function handleClick(event, subjectId, className = "active") {
 }
 
 function attachListeners() {
-  const buttonWork = document.getElementById("button-work");
-  const buttonTools = document.getElementById("button-tools");
-  const buttonApproach = document.getElementById("button-approach");
+  const buttonWork = document.getElementById('button-work');
+  const buttonTools = document.getElementById('button-tools');
+  const buttonApproach = document.getElementById('button-approach');
 
-  buttonWork.addEventListener("click", function (event) {
+  buttonWork.addEventListener('click', function (event) {
     history.pushState({}, '', '/work');
-    handleClick(event, "work");
+    handleClick(event, 'work');
   });
 
-  buttonTools.addEventListener("click", function (event) {
+  buttonTools.addEventListener('click', function (event) {
     history.pushState({}, '', '/tools');
-    handleClick(event, "tools");
+    handleClick(event, 'tools');
   });
 
-  buttonApproach.addEventListener("click", function (event) {
+  buttonApproach.addEventListener('click', function (event) {
     history.pushState({}, '', '/');
-    handleClick(event, "approach");
+    handleClick(event, 'approach');
   });
 
-  buttonProject.addEventListener("click", function (event) {
+  buttonProject.addEventListener('click', function (event) {
     history.pushState({}, '', '/work/project');
-    handleClick(event, "project", "active-work");
+    handleClick(event, 'project', 'active-work');
   });
 
-  buttonTools.addEventListener("click", function (event) {
+  buttonTools.addEventListener('click', function (event) {
     history.pushState({}, '', '/work/project/features');
-    handleClick(event, "features", "active-work");
+    handleClick(event, 'features', 'active-work');
   });
 
-  buttonApproach.addEventListener("click", function (event) {
+  buttonApproach.addEventListener('click', function (event) {
     history.pushState({}, '', '/work/project/tools');
-    handleClick(event, "tools", "active-work");
+    handleClick(event, 'tools', 'active-work');
   });
 }
 
-
 function animateContent() {
-  const allElements = document.getElementsByClassName("header");
+  const allElements = document.getElementsByClassName('header');
   for (let i = 0; i < allElements.length; i++) {
-    allElements[i].classList.remove("left", "right", "blurred");
+    allElements[i].classList.remove('left', 'right', 'blurred');
   }
 }
 
