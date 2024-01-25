@@ -4,7 +4,7 @@ function addActiveButton(subject) {
   const button = document.querySelector(`.button-${subject}`);
 
   if (button) {
-    button.classList.add("active");
+    button.classList.add('active');
   }
 }
 
@@ -27,16 +27,14 @@ function addActiveSubject(subject, className) {
     return;
   }
 
-  newActiveSubject.classList.add(className)
-
+  newActiveSubject.classList.add(className);
 }
 
 const dummyEvent = {
   preventDefault: function () { },
-}
+};
 
 function disableTabButtons(className) {
-
   const elements = document.getElementsByClassName(className);
 
   if (!elements || elements.length === 0) {
@@ -46,18 +44,17 @@ function disableTabButtons(className) {
   const tabButtons = Array.from(elements);
 
   tabButtons.forEach((button) => {
-    button.classList.add("disabled");
+    button.classList.add('disabled');
   });
 
   setTimeout(() => {
     tabButtons.forEach((button) => {
-      button.classList.remove("disabled");
+      button.classList.remove('disabled');
     });
   }, 201);
 }
 
 function handleClick(event, subject, className) {
-
   event.preventDefault();
 
   disableTabButtons(className);
@@ -65,127 +62,109 @@ function handleClick(event, subject, className) {
   removeActive(className);
 
   addActiveButton(subject, className);
-  
+
   addActiveSubject(subject, className);
 }
 
 function attachListeners() {
-  const buttonWork = document.querySelector(".button-work");
-  const buttonTools = document.querySelector(".button-tools");
-  const buttonApproach = document.querySelector(".button-approach");
+  const buttonWork = document.querySelector('.button-work');
+  const buttonTools = document.querySelector('.button-tools');
+  const buttonApproach = document.querySelector('.button-approach');
 
-  buttonWork.addEventListener("click", function (event) {
+  buttonWork.addEventListener('click', function (event) {
     history.pushState({}, '', '/work');
-    handleClick(event, "work", "active");
+    handleClick(event, 'work', 'active');
   });
 
-  buttonTools.addEventListener("click", function (event) {
+  buttonTools.addEventListener('click', function (event) {
     history.pushState({}, '', '/tools');
-    handleClick(event, "tools", "active");
+    handleClick(event, 'tools', 'active');
   });
 
-  buttonApproach.addEventListener("click", function (event) {
+  buttonApproach.addEventListener('click', function (event) {
     history.pushState({}, '', '/');
-    handleClick(event, "approach", "active");
+    handleClick(event, 'approach', 'active');
   });
 
-  const buttonArticlNet = document.querySelector(".button-button-articl-net");
-  const buttonNaturallyHued = document.querySelector(".button-button-naturally-hued");
-  const buttonSlotMachine = document.querySelector(".button-button-slotmachine");
-  const buttonArticlQa = document.querySelector(".button-button-articl-qa");
-  const buttonGreatClipsAdTool = document.querySelector(".button-button-greatclips-adtool");
-  const buttonGsnCore = document.querySelector(".button-button-gsn-core");
-  const buttonGsnApiClient = document.querySelector(".button-button-gsn-api-client");
-  const buttonEjmAddSearchForm = document.querySelector(".button-button-ejm-add-search-form");
-  const buttonCryptocurrencyDashboard = document.querySelector(".button-button-cryptocurrency-dashboard");
-  const buttonMongodbS3Backup = document.querySelector(".button-button-mongodb-s3-backup");
-  const buttonOpeningRangeBot = document.querySelector(".button-button-openingrangebot");
+  const buttonAi = document.querySelector('.button-ai');
+  const buttonVanilla = document.querySelector('.button-vanilla');
+  const buttonVue = document.querySelector('.button-vue');
+  const buttonNodeJs = document.querySelector('.button-node-js');
+  const buttonNoSql = document.querySelector('.button-no-sql');
+  const buttonGoogleApis = document.querySelector('.button-google-apis');
+  const buttonShopify = document.querySelector('.button-shopify');
+  const buttonAuthentication = document.querySelector('.button-authentication');
+  const buttonAngularJs = document.querySelector('.button-angular-js');
+  const buttonPhp = document.querySelector('.button-php');
+  const buttonSql = document.querySelector('.button-sql');
+  const buttonWordpress = document.querySelector('.button-wordpress');
 
-  buttonArticlNet.addEventListener("click", function (event) {
-    handleClick(event, "articl-net", "work-active");
-  }
-  
-  );
-
-  buttonNaturallyHued.addEventListener("click", function (event) {
-    handleClick(event, "naturally-hued", "work-active");
+  buttonAi.addEventListener('click', function (event) {
+    handleClick(event, 'ai', 'work-active');
   });
 
-  buttonSlotMachine.addEventListener("click", function (event) {
-    handleClick(event, "slotmachine", "work-active");
+  buttonVanilla.addEventListener('click', function (event) {
+    handleClick(event, 'vanilla', 'work-active');
   });
 
-  buttonArticlQa.addEventListener("click", function (event) {
+  buttonVue.addEventListener('click', function (event) {
+    handleClick(event, 'vue', 'work-active');
+  });
 
-    handleClick(event, "articl-qa", "work-active");
-  }
+  buttonNodeJs.addEventListener('click', function (event) {
+    handleClick(event, 'node-js', 'work-active');
+  });
 
-  );
+  buttonNoSql.addEventListener('click', function (event) {
+    handleClick(event, 'no-sql', 'work-active');
+  });
 
-  buttonGreatClipsAdTool.addEventListener("click", function (event) {
-    handleClick(event, "greatclips-adtool", "work-active");
-  }
-  );
+  buttonGoogleApis.addEventListener('click', function (event) {
+    handleClick(event, 'google-apis', 'work-active');
+  });
 
-  buttonGsnCore.addEventListener("click", function (event) {
-    handleClick(event, "gsn-core", "work-active");
-  } 
+  buttonShopify.addEventListener('click', function (event) {
+    handleClick(event, 'shopify', 'work-active');
+  });
 
-  );
+  buttonAuthentication.addEventListener('click', function (event) {
+    handleClick(event, 'authentication', 'work-active');
+  });
 
+  buttonAngularJs.addEventListener('click', function (event) {
+    handleClick(event, 'angular-js', 'work-active');
+  });
 
-  buttonGsnApiClient.addEventListener("click", function (event) {
-    handleClick(event, "gsn-api-client", "work-active");
-  }
-  );
+  buttonPhp.addEventListener('click', function (event) {
+    handleClick(event, 'php', 'work-active');
+  });
 
-  buttonEjmAddSearchForm.addEventListener("click", function (event) {
-    handleClick(event, "ejm-add-search-form", "work-active");
-  }
-  );
+  buttonSql.addEventListener('click', function (event) {
+    handleClick(event, 'sql', 'work-active');
+  });
 
-  buttonCryptocurrencyDashboard.addEventListener("click", function (event) {
-
-    handleClick(event, "cryptocurrency-dashboard", "work-active");
-  }
-
-  );
-
-  buttonMongodbS3Backup.addEventListener("click", function (event) {
-
-    handleClick(event, "mongodb-s3-backup", "work-active");
-  }
-
-  );
-
-  buttonOpeningRangeBot.addEventListener("click", function (event) {
-
-    handleClick(event, "openingrangebot", "work-active");
-  }
-
-  );
-
-  
+  buttonWordpress.addEventListener('click', function (event) {
+    handleClick(event, 'wordpress', 'work-active');
+  });
 }
 
-
 function animateContent() {
-  const allElements = document.getElementsByClassName("header");
+  const allElements = document.getElementsByClassName('header');
   for (let i = 0; i < allElements.length; i++) {
-    allElements[i].classList.remove("left", "right", "blurred");
+    allElements[i].classList.remove('left', 'right', 'blurred');
   }
 }
 
 function initRoute() {
   switch (window.location.pathname) {
     case '/work':
-      handleClick(dummyEvent, 'work', "active");
+      handleClick(dummyEvent, 'work', 'active');
       break;
     case '/tools':
-      handleClick(dummyEvent, 'tools', "active");
+      handleClick(dummyEvent, 'tools', 'active');
       break;
     case '/':
-      handleClick(dummyEvent, 'approach', "active");
+      handleClick(dummyEvent, 'approach', 'active');
       break;
     default:
       handleClick(dummyEvent, 'not-found');

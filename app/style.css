@@ -12,14 +12,19 @@
 body {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   color: #eeeeee;
   background-color: #000000;
   background-image: linear-gradient(to bottom, #300031, transparent);
   background-attachment: fixed;
   margin: 0;
   padding: 0;
+  overscroll-behavior: none;
+  overflow-x: hidden;
 }
 
+/*
 body * * {
   border: 1px solid purple;
 }
@@ -67,7 +72,7 @@ body * * * * * * * * * * * * {
 body * * * * * * * * * * * * * {
   border: 1px solid orange;
 }
-
+*/
 .page {
   display: flex;
   flex-direction: column;
@@ -80,23 +85,38 @@ body * * * * * * * * * * * * * {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 16rem;
+  width: 18rem;
 }
 
 .portfolio-card {
-  background-color: #222;
-  height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   transition: transform 0.5s;
-  width: 12rem;
-  padding: 2rem;
+  width: 18rem;
+}
+
+.filters {
+  margin: 1rem 0;
+  width: 18rem;
+  text-align: center;
+}
+
+.filters label {
+  display: inline-block;
+
+  margin: 0.5rem 0;
 }
 
 /* The switch - the box around the slider */
 .switch {
   position: relative;
   display: inline-block;
-  width: 3.5em;
-  height: 2em;
+  font-size: 0.6rem;
+  text-indent: 1.3rem;
+  color: #ffffff;
+  margin-right: 0.6rem;
 }
 
 /* Hide default HTML checkbox */
@@ -109,49 +129,31 @@ body * * * * * * * * * * * * * {
 /* The slider */
 .slider {
   position: absolute;
+  width: 1.5rem;
+  height: 0.8rem;
   cursor: pointer;
   inset: 0;
-  background: white;
+  background: #ffffff66;
   border-radius: 50px;
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.215, 0.610, 0.355, 1);
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 1.4rem;
-  width: 1.4rem;
-  right: 0.3rem;
-  bottom: 0.1rem;
-  transform: translateX(150%);
-  background-color: #59d102;
-  border-radius: inherit;
   transition: all 0.4s ease-in-out;
 }
 
 .slider:after {
   position: absolute;
   content: "";
-  height: 1.4rem;
-  width: 1.4rem;
-  left: 0.3rem;
+  height: 0.6rem;
+  width: 0.6rem;
+  left: 0.1rem;
   bottom: 0.1rem;
   background-color: #cccccc;
   border-radius: inherit;
   transition: all 0.4s ease-in-out;
 }
 
-.switch input:focus + .slider {
-  border: 1px soplid red;
-}
-
-.switch input:checked + .slider:before {
-  transform: translateY(0);
-}
-
 .switch input:checked + .slider::after {
-  transform: translateX(-150%);
+  transform: translateX(0.7rem);
+  background-color: #59d102;
 }
 
 .dim {
@@ -179,11 +181,9 @@ h4 {
   margin: 0;
 }
 
-
-
 h1 {
   font-weight: 700;
-  font-size: 2.2rem;
+  font-size: 2rem;
   letter-spacing: 0.09rem;
   line-height: 1.1;
 }
@@ -219,6 +219,12 @@ p.header {
   margin-bottom: 1rem;
 }
 
+.github {
+
+  height: auto;
+  margin-bottom: 1rem;
+}
+
 .title {
   text-align: center;
 }
@@ -242,7 +248,7 @@ footer {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 16rem;
+  width: 18rem;
   padding-bottom: 5rem;
   font-size: 0.9rem;
   text-align: center;
@@ -306,7 +312,7 @@ ul.tabs {
   justify-content: center;
   align-items: center;
   list-style: none;
-  width: 16rem;
+  width: 18rem;
   padding: 0;
 }
 
@@ -350,14 +356,14 @@ a {
 
 .subject-wrapper {
   position: relative;
-  width: 16rem;
+  width: 18rem;
   margin: 0 1rem;
 }
 
 .subject {
   display: none;
   opacity: 0;
-  width: 16rem;
+  width: 18rem;
   height: 100%;
   transition: opacity 0.9 s ease-in-out;
 }
@@ -375,13 +381,24 @@ a {
   justify-content: center;
   position: relative;
   margin: 2rem 0;
-  width: 16rem;
+  width: 18rem;
   transition: all 0.3s ease-in-out;
 }
 
 h4 {
   margin-top: 0;
   font-size: 1rem;
+}
+
+ul {
+  padding: 0;
+  list-style-position: inside;
+}
+
+.list-item {
+  font-size: 0.8rem;
+  margin: 0 0 1rem 0;
+
 }
 
 @media (prefers-color-scheme: light) {
