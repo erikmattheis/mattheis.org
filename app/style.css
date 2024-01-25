@@ -157,10 +157,6 @@ body * * * * * * * * * * * * * {
   background-color: #59d102;
 }
 
-.dim {
-  opacity: 0.8;
-}
-
 h1,
 h2,
 h3,
@@ -395,15 +391,53 @@ h4 {
   font-size: 1rem;
 }
 
-ul {
+/* lists */
+
+/* Reset default list styles */
+ul,
+li {
+  margin: 0;
   padding: 0;
-  list-style-position: inside;
+}
+
+ul {
+  margin-block-end: 1rem;
+}
+
+ul ul {
+  margin-block-start: 0.5rem;
 }
 
 .list-item {
   font-size: 0.8rem;
-  margin: 0 0 1rem 0;
+  font-weight: initial;
+  padding: 0 0 0.2rem 1rem;
+  list-style-type: none;
+  margin-bottom: 0.1rem;
+  border-bottom: 0.1rem solid #eeeeee11;
+}
 
+.list-item::before {
+  content: '▹';
+  position: absolute;
+  left: 0;
+}
+
+.list-item.dim {
+  color: #eeeeee66;
+}
+
+li.list-item.dim::before {
+  content: '▿';
+}
+
+li.list-item-heading {
+  font-weight: 700;
+  list-style-type: none;
+}
+
+.list-item:last-child {
+  border-bottom: none;
 }
 
 @media (prefers-color-scheme: light) {
