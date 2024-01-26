@@ -1,7 +1,7 @@
 let controller;
 let subjectsTransitioning = false;
 
-const footerHtml = `<footer class="header animated dur06 blurred">
+const footerHtml = `<footer class="header blurred">
 <p>Let's build something great togther.</p>
 <a class="mail" href="mailto:erik@mattheis.org">erik@mattheis.org</a>
 Saint Paul, MN
@@ -19,7 +19,7 @@ function addActiveButton(subjectId) {
 function removeActiveButton() {
 
   const currentActiveButton = document.querySelector(".button.active");
-  
+
   if (currentActiveButton) {
     currentActiveButton.classList.remove("active");
   }
