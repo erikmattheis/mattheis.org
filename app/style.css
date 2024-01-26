@@ -171,7 +171,6 @@ h4 {
 
 .work h4 {
   margin-bottom: 3rem;
-  ;
 }
 
 h4 {
@@ -226,9 +225,7 @@ p.header {
   color: inherit;
 }
 
-.title {
-  text-align: center;
-}
+
 
 .text-link {
   text-decoration: none;
@@ -367,6 +364,7 @@ a {
   width: 18rem;
   height: 100%;
   transition: opacity 0.9 s ease-in-out;
+
 }
 
 .subject.active {
@@ -383,7 +381,17 @@ a {
   position: relative;
   margin: 2rem 0;
   width: 18rem;
-  transition: all 0.3s ease-in-out;
+  background-color: #ffffff11;
+  margin: 0 -0.5rem;
+  padding: 3rem 0.5rem 0.5rem 0.5rem;
+  border-radius: 0.2rem;
+}
+
+.work .topic {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-bottom: 4rem;
 }
 
 h4 {
@@ -411,24 +419,21 @@ ul ul.inner-list {
 .list-item {
   font-size: 0.8rem;
   font-weight: initial;
-  padding: 0 0 0.2rem 1rem;
-  list-style-type: none;
+  padding: 0 0 0.2rem 0.5rem;
+  list-style-type: square;
+  list-style-position: inside;
   margin-bottom: 0.1rem;
   border-bottom: 0.1rem solid #eeeeee11;
 }
 
 .list-item::before {
-  content: '▹';
+  content: '';
   position: absolute;
   left: 0;
 }
 
 .list-item.dim {
   color: #eeeeee66;
-}
-
-li.list-item.dim::before {
-  content: '▿';
 }
 
 li.list-item-heading {
@@ -465,10 +470,6 @@ li.list-item-heading {
 
 @media (prefers-reduced-motion: reduce) {
   .graphic {
-    transition: none;
-  }
-
-  .title {
     transition: none;
   }
 
