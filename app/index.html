@@ -165,7 +165,7 @@
               <ul>
                 <li class="list-item-heading"> Frontend
 
-                  <ul>
+                  <ul class="inner-list">
                     <li class="list-item checked">ES2021</li>
                     <li class="list-item checked">Vue</li>
                     <li class="list-item checked">BootstrapJS, BootstrapVue</li>
@@ -177,7 +177,7 @@
                 </li>
                 <li class="list-item-heading"> Backend
 
-                  <ul>
+                  <ul class="inner-list">
                     <li class="list-item checked">Node</li>
                     <li class="list-item checked">NoSQL</li>
                     <li class="list-item checked">Nuxt</li>
@@ -188,7 +188,7 @@
                 </li>
                 <li class="list-item-heading"> APIs
 
-                  <ul>
+                  <ul class="inner-list">
                     <li class="list-item checked">Firebase</li>
                     <li class="list-item checked">Atlas</li>
                     <li class="list-item checked">OpenAI API</li>
@@ -213,7 +213,7 @@
                 </li>
                 <li class="list-item-heading"> AI
 
-                  <ul>
+                  <ul class="inner-list">
                     <li class="list-item checked">OpenAI GPT</li>
                     <li class="list-item checked">OpenAI Dall-e</li>
                     <li class="list-item checked">Google Bard API</li>
@@ -222,7 +222,7 @@
                 </li>
                 <li class="list-item-heading"> DevOps
 
-                  <ul>
+                  <ul class="inner-list">
                     <li class="list-item checked">Heroku</li>
                     <li class="list-item checked">Netlify</li>
                     <li class="list-item checked">Google Cloud</li>
@@ -231,7 +231,7 @@
                 </li>
                 <li class="list-item-heading"> Software
 
-                  <ul>
+                  <ul class="inner-list">
                     <li class="list-item checked">Photoshop/Illustrator</li>
                     <li class="list-item checked">VS Code</li>
                     <li class="list-item checked">Git</li>
@@ -302,7 +302,7 @@
             <label class="switch">
               <input type="checkbox"
                      v-model="nodeJS" />
-              <span class="slider"></span> NodeJS </label>
+              <span class="slider"></span> Node.js </label>
             <label class="switch">
               <input type="checkbox"
                      v-model="NoSQL" />
@@ -448,52 +448,29 @@
               <a class="github"
                  href="https://github.com/erikmattheis/greatclipsadwordstool">Github</a>
 
-              <p>The Google AD Campaign Generator for GreatClips franchise owners is an application designed to
-                streamline the creation and management of Google Ads campaigns for new GreatClips franchise owners with
-                multiple franchises in a specific geographical area. The primary functionality involves dynamically
-                generating ads for the closest GreatClips franchise based on user-triggered Google searches. </p>
+              <p class="summary">Automates and oversees Google Ads campaigns for GreatClips franchise owners in a simple
+                interface. Instead of navigating through hundreds of fields in the Google Ads Dashboard, franchise
+                owners are presented with the eight fields they need to create customized, effective, location-based
+                ads. </p>
 
               <h4>Key Features</h4>
 
               <ul>
-                <li class="list-item checked">Dynamic Ad Generation: Automatically generates Google Ads for the closest
-                  GreatClips franchise in response to user-initiated Google searches.</li>
-                <li class="list-item checked">Budget Management: Utilizes budget management functionalities to allocate
-                  resources effectively for advertising campaigns.</li>
-                <li class="list-item checked">Campaign Configuration: Configures Google Ads campaigns based on the
-                  specific requirements of GreatClips franchise owners.</li>
-                <li class="list-item checked">Ad Group Customization: Creates ad groups with tailored settings to
-                  optimize the targeting and delivery of advertisements.</li>
-                <li class="list-item checked">Keyword Integration: Incorporates relevant keywords to enhance the
-                  visibility of ads in response to user search queries.</li>
-                <li class="list-item checked">Proximity Targeting: Implements proximity targeting to ensure that ads are
-                  displayed based on the user's geographical location.</li>
-                <li class="list-item checked">Error Handling: Includes error handling mechanisms to identify and address
-                  potential issues during the campaign creation process.</li>
+                <li class="list-item checked">Dynamic Ad Generation:</li>
+                <li class="list-item checked">Budget Management</li>
+                <li class="list-item checked">Ad content customization</li>
+                <li class="list-item checked">Keyword Targeting, Demographic Targeting, Proximity Targeting</li>
+                <li class="list-item checked">Error Handling address potential issues with data</li>
               </ul>
 
               <h4>Technologies and Tools</h4>
 
               <ul>
-                <li class="list-item checked">Express.js: API for interacting with Google Ads services, facilitating the
-                  creation and management of advertising campaigns.</li>
-                <li class="list-item checked">Node.js: JavaScript runtime for executing server-side code.</li>
-                <li class="list-item checked">node-adwords Library: Node.js client library for interacting with the
-                  Google Ads API, facilitating the creation and management of advertising campaigns.</li>
-                <li class="list-item checked">xml2js Library: Converts XML data to JSON format, aiding in processing and
-                  handling data retrieved from the Google Ads API.</li>
-                <li class="list-item checked">async Library: Manages asynchronous operations in a waterfall pattern,
-                  ensuring a sequential flow of tasks during the campaign creation process.</li>
-                <li class="list-item checked">BudgetHelper Module: Custom module for handling budget-related
-                  functionalities. </li>
-                <li class="list-item checked">CampaignHelper Module: Custom module for managing campaign-related
-                  functionalities. </li>
+                <li class="list-item checked">Express.js</li>
+                <li class="list-item checked">Node.js:</li>
+                <li class="list-item checked">Google Ads API</li>
+                <li class="list-item checked">xml2js</li>
               </ul>
-
-              <p>This application simplifies the process of setting up and managing Google Ads campaigns for GreatClips
-                franchise owners, enhancing the visibility and reach of their franchises in response to user searches.
-                The utilization of the Google Ads API and Node.js technologies ensures efficient campaign creation and
-                customization for optimal advertising outcomes.</p>
 
             </div>
 
@@ -506,59 +483,38 @@
               <h3>Articl Q&A - AngularJS</h3>
 
               <h4><em>Medical Study Tool</em></h4>
+
+              <p class="summary"> An application designed to provide medical students with multiple-choice quizzes for
+                studying purposes. Developed during the mentorship of UMN-Duluth CS majors, the project aimed to expose
+                students to real-world scenarios, encouraging the understanding and adaptation of code for educational
+                purposes.</p>
               <a class="github"
-                 href="https://github.com/erikmattheis/articlmultiplechoicequestion">Github</a> An application designed
-              to provide medical students with multiple-choice quizzes for studying purposes. Developed during the
-              mentorship of UMN-Duluth CS majors, the project aims to expose students to real-world scenarios,
-              encouraging the understanding and adaptation of code for educational purposes.
+                 href="https://github.com/erikmattheis/articlmultiplechoicequestion">Github</a></p>
 
               <h4>Key Features</h4>
 
               <ul>
-                <li class="list-item checked">Study Quizzes: Facilitates the creation and delivery of multiple-choice
-                  quizzes for medical students.</li>
-                <li class="list-item checked">User Authentication: Implements user authentication functionalities,
-                  including registration, login, and account verification.</li>
+                <li class="list-item checked">Creates and deliders multiple-choice quizzes.</li>
+                <li class="list-item checked">Registrs and authenticates user accounts.</li>
                 <li class="list-item checked">Category Organization: Allows the categorization of quizzes based on
                   medical topics for easy navigation.</li>
-                <li class="list-item checked">User Profile: Provides user profiles with information about their progress
-                  and contributions.</li>
-                <li class="list-item checked">Responsive Design: Adopts a responsive design approach for optimal user
-                  experience on various devices.</li>
-                <li class="list-item checked">Password Management: Includes features for password reset and email
-                  verification. </li>
-                <li class="list-item checked">User Management: Enables administrators to manage user accounts and access
-                  control. </li>
+                <li class="list-item checked">User Profile including progress and contributions.</li>
+                <li class="list-item checked">Responsive Design: Optimal user experiences for web and mobile.</li>
               </ul>
 
               <h4>Technologies and Tools</h4>
 
               <ul>
-                <li class="list-item checked">AngularJS: JavaScript framework for building user interfaces.</li>
-                <li class="list-item checked">Bootstrap: Frontend component library for building responsive websites.
-                </li>
-                <li class="list-item checked">Node.js: JavaScript runtime for executing server-side code.</li>
-                <li class="list-item checked">Express: Web application framework for Node.js, used for server-side
-                  development. </li>
-                <li class="list-item checked">MongoDB: Database for storing and retrieving data.</li>
-                <li class="list-item checked">Mongoose: MongoDB driver for Node.js to interact with MongoDB.</li>
-                <li class="list-item checked">Passport: Authentication middleware for Node.js.</li>
-                <li class="list-item checked">Nodemailer: Node.js module for sending emails.</li>
-                <li class="list-item checked">Bcrypt: Node.js module for password hashing.</li>
-                <li class="list-item checked">Multer: Node.js middleware for handling multipart/form-data.</li>
-                <li class="list-item checked">Express Session: Node.js middleware for managing user sessions.</li>
-                <li class="list-item checked">Express Validator: Node.js middleware for validating user input.</li>
-                <li class="list-item checked">Connect Flash: Node.js middleware for displaying flash messages.</li>
-                <li class="list-item checked">Connect Mongo: Node.js middleware for storing session data in MongoDB.
-                </li>
-                <li class="list-item checked">Connect Multiparty: Node.js middleware for handling multipart/form-data.
-                </li>
+                <li class="list-item checked">Vue.js</li>
+                <li class="list-item checked">Bootstrap</li>
+                <li class="list-item checked">Node.js</li>
+                <li class="list-item checked">Express</li>
+                <li class="list-item checked">MongoDB</li>
+                <li class="list-item checked">Mongoose</li>
+                <li class="list-item checked">Passport</li>
+                <li class="list-item checked">Nodemailer</li>
+                <li class="list-item checked">Bcrypt</li>
               </ul>
-
-              <p>This project serves as an educational tool for medical students, offering a platform for interactive
-                and organized study quizzes. The use of Vue.js and associated tools showcases the development of a
-                user-friendly and feature-rich application, emphasizing both frontend and backend aspects for a
-                comprehensive learning experience.</p>
 
             </div>
 
@@ -572,36 +528,25 @@
 
               <h4><em>Video One-armed Bandite</em></h4>
 
-              <p>Slotmachine is a full-featured one-arm bandit developed to explore the differences between Vue 2 and
-                Vue 3. The slot machine incorporates symbols inspired by iconic figures like Prince, David Bowie, Lady
-                Gaga, birds, and selected food items, making it a visually engaging application.</p>
+              <p>Slotmachine is a full-featured one-arm bandit developed to show off and explore the differences between
+                Vue 2 and Vue 3. The slot machine incorporates symbols inspired by iconic figures like Prince, David
+                Bowie, Lady Gaga, birds, and selected food items, making it a visually engaging application.</p>
 
               <h4>Key Features</h4>
 
               <ul>
                 <li class="list-item checked">Symbol Diversity: Offers a wide range of symbols including Prince, David
-                  Bowie, Lady Gaga, birds, and food items for a rich and varied visual experience.</li>
+                  Bowie, Lady Gaga, birds, and Oreo cookies.</li>
                 <li class="list-item checked">Credit System: Implements a credit system allowing users to spin the slot
-                  machine with a starting credit balance.</li>
-                <li class="list-item checked">Reel Animation: Features animated reels with diverse symbols, enhancing
-                  the slot machine experience.</li>
-                <li class="list-item checked">Audio Integration: Incorporates sound effects for button clicks, spinning,
-                  and winning combinations, enhancing the overall user experience.</li>
-                <li class="list-item checked">Responsive Design: Adopts a responsive design approach for optimal viewing
-                  on different devices.</li>
-                <li class="list-item checked">Free Spin Feature: Introduces a "Free Spin" feature for specific symbol
-                  combinations. </li>
-                <li class="list-item checked">Credit Meter: Displays a credit meter to keep users informed about their
-                  remaining credits.</li>
-                <li class="list-item checked">Vue 3 Components: Demonstrates the use of Vue 3 components, including
-                  TheSplash, TheBirdhouseAnimation, TheGame, TheCreditMeter, TheReels, ThreeDButton, and TheAudioButton.
-                </li>
+                  machine with a starting credit balance that is partially replenished each day.</li>
+                <li class="list-item checked">Reel physics enhance the slot machine experience.</li>
+                < class="list-item checked">Incorporates sound effects and jingles I created in Logic Pro.</li>
               </ul>
 
               <h4>Technologies and Tools</h4>
 
               <ul class="detailed">
-                <li class="list-item checked">Vue 3: JavaScript framework for building user interfaces.</li>
+                <li class="list-item checked">Vue.js</li>
                 <li class="list-item checked">Vuex: State management library for Vue.js applications.</li>
                 <li class="list-item checked">Core-js: JavaScript standard library, providing essential polyfills.</li>
                 <li class="list-item checked">Vue CLI: Command-line interface for Vue.js development tasks.</li>
