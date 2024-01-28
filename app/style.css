@@ -155,24 +155,30 @@ p.header {
 
 /* header */
 
-.svg-wrapper {
-  margin: 0 2rem 4rem 2rem;
+.footer-svg-wrapper {
+  position: relative;
+  margin-top: 4rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
-  /* transition: all 0.2s ease-in-out; */
+  width: 100%;
 }
 
-.small.svg-wrapper {
+.footer-svg-wrapper svg {
   width: 1.5rem;
+}
+
+/* ntools */
+
+.tools {
+  margin-top: 6rem;
 }
 
 /* projects */
 
 .svg-wrapper {
-  width: 6rem;
+  width: 4rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -458,8 +464,4 @@ ul ul.inner-list {
 li.list-item-heading {
   font-weight: 700;
   list-style-type: none;
-}
-
-.list-item:last-child {
-  border-bottom: none;
 }
